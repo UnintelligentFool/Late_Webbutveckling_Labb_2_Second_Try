@@ -57,6 +57,8 @@
 
             //var courseToReturn = await _context.courses.FindAsync(id);
 
+            //await Task.Delay(1000);
+
             return await _context.courses.FindAsync(id);
 
             //return courseToReturn;
