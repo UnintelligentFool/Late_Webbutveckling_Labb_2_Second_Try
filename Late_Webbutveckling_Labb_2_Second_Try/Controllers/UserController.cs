@@ -92,14 +92,6 @@
         [HttpGet("/api/GetAllUsers")]
         public async Task<ActionResult<List<User>>> GetAllUsers() {
 
-            GetAllUsers_Class getAllUsers = new GetAllUsers_Class(userList, _context);
-
-            //return Ok("Alla användare listade");
-
-            //return Ok(getAllUsers.ReturnAllUsers());//Fungerar för listan som skapats ovan
-
-            //return Ok(await _context.users.ToListAsync());//Fungerar för databasen men nu är det inte klassen getAllUsers
-
             return Ok(await _context.users.ToListAsync());
 
         }
@@ -107,14 +99,27 @@
         [HttpGet("/api/GetUserByEmail/{email}")]
         public async Task<ActionResult<User>> GetUserByEmail(string email) {
 
-            GetUserByEmail_Class getUserByEmail = new GetUserByEmail_Class(userList, email);
+            //GetUserByEmail_Class getUserByEmail = new GetUserByEmail_Class(userList, email);
 
             //return Ok(getUserByEmail.ReturnUserByEmail(email));
             //return new ContentResult() { };
             //return StatusCode(222, getUserByEmail.ReturnUserByEmail(email));
-            return StatusCode(200, getUserByEmail.ReturnUserByEmail(email));
-
+            //return StatusCode(200, getUserByEmail.ReturnUserByEmail(email));
             //return Ok("Användare med vald e-post visas");
+
+            //FirstOrDefaultAsync(e => e.Name == "abc000") //Lösning feån: https://entityframeworkcore.com/knowledge-base/54902969/ef-core-dealing-with-alternate-primary-keys
+
+            var userToReturn = _context.users.FirstOrDefaultAsync(findEmail => findEmail.Email == email).Result;
+            //var userToReturn = userList.Find(returnValue => returnValue.Email == userEmail);
+            
+            if (userToReturn is null) {
+
+                return BadRequest("Kunde inte hämta användare");
+
+            }
+
+            //return await _context.courses.FindAsync(id);
+            return Ok(userToReturn);
 
         }
 

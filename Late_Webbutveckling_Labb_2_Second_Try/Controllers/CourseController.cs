@@ -71,54 +71,48 @@ namespace Late_Webbutveckling_Labb_2_Second_Try.Controllers {
         [HttpGet("/api/GetAllCourses")]
         public async Task<ActionResult<List<Course>>> GetAllCourses() {
 
-            GetAllCourses_Class getAllCourses = new GetAllCourses_Class(courseList);
-
-            //return Ok(getAllCourses.ReturnAllCourses());
-            //return StatusCode(200, getAllCourses.ReturnAllCourses());//Fungerar mot listan ovan
-
-            return Ok(await _context.courses.ToListAsync());//Fungerar mot databasen
-
-            //return Ok("Kurser hämtade");
+            return Ok(await _context.courses.ToListAsync());
 
         }
 
         [HttpGet("/api/GetSelectedCourse/{id}")]
         public async Task<ActionResult<Course>> GetSelectedCourse(int id) {
 
-            GetSelectedCourse_Class getSelectedCourse = new GetSelectedCourse_Class(courseList, id, _context);
+            var courseToReturn = _context.courses.FindAsync(id).Result;
 
-            if (getSelectedCourse.courseList.Find(courseWithId => courseWithId.Id == id) is null) {
+            if (courseToReturn is null) {
 
                 return BadRequest("Kunde inte hämta kurs");
 
             }
 
-            //return StatusCode(200, await getSelectedCourse.ReturnSelectedCourse(id));
+            //return await _context.courses.FindAsync(id);
+            return Ok(courseToReturn);
 
-            //return Ok("Kurs hämtad");
+            //GetSelectedCourse_Class getSelectedCourse = new GetSelectedCourse_Class(courseList, id, _context);
 
-            //return StatusCode(200, await _context.courses.FindAsync(id));
+            //if (getSelectedCourse.courseList.Find(courseWithId => courseWithId.Id == id) is null) {
 
-            //return Ok(await _context.courses.FindAsync(id));
+            //    return BadRequest("Kunde inte hämta kurs");
 
-            //return StatusCode(200, await getSelectedCourse.ReturnSelectedCourse(id));
-
-            //var courseToReturn = await _context.courses.FindAsync(id);
-            //return courseToReturn;
+            //}
 
             //return StatusCode(200, await getSelectedCourse._context.courses.FindAsync(id));
-            return StatusCode(200, await getSelectedCourse._context.courses.FindAsync(id));
 
         }
 
         [HttpPost("/api/AddCourse")]
         public async Task<ActionResult<List<Course>>> AddCourse(Course course) {
 
-            AddCourse_Class addCourse = new AddCourse_Class(courseList, course);
+            //AddCourse_Class addCourse = new AddCourse_Class(courseList, course);
 
-            courseList = addCourse.courseList;
+            //courseList = addCourse.courseList;
 
-            return StatusCode(200, addCourse.courseList);
+            _context.courses.AddAsync(course);
+
+            _context.SaveChanges();
+
+            return StatusCode(200, _context.courses);
 
             //return Ok("Kurs tillagd");
 
