@@ -108,9 +108,9 @@ namespace Late_Webbutveckling_Labb_2_Second_Try.Controllers {
 
             //courseList = addCourse.courseList;
 
-            _context.courses.AddAsync(course);
+            await _context.courses.AddAsync(course);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return StatusCode(200, _context.courses);
 
@@ -134,11 +134,16 @@ namespace Late_Webbutveckling_Labb_2_Second_Try.Controllers {
         [HttpDelete("/api/DeleteCourse/{id}")]
         public async Task<ActionResult<List<Course>>> DeleteCourse(int id) {
 
-            DeleteCourse_Class deleteCourse = new DeleteCourse_Class(courseList, id);
-
-            return StatusCode(200, deleteCourse.DeletingCourse(id));
-
+            //DeleteCourse_Class deleteCourse = new DeleteCourse_Class(courseList, id);
+            //return StatusCode(200, deleteCourse.DeletingCourse(id));
             //return Ok("Kurs borttagen");
+
+
+            _context.courses.Remove(_context.courses.Find(id));
+
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.courses.ToListAsync());
 
         }
 

@@ -127,27 +127,132 @@
         [HttpPost("/api/AddUser")]
         public async Task<ActionResult<List<User>>> AddUser(User user) {
 
-            AddUser_Class addUser = new AddUser_Class(userList, user);
-
-            userList = addUser.userList;
-
-            return StatusCode(200, addUser.userList);
+            //AddUser_Class addUser = new AddUser_Class(userList, user);
+            //userList = addUser.userList;
+            //return StatusCode(200, addUser.userList);
             //return Ok(addUser);
 
             //return Ok("Användare registrerad");
+
+            await _context.users.AddAsync(user);
+
+            await _context.SaveChangesAsync();
+
+            return StatusCode(200, _context.users);
 
         }
         
         [HttpPut("/api/UpdateUserProfile")]
         public async Task<ActionResult<List<User>>> UpdateUserProfile(User user) {
 
-            UpdateUserProfile_Class updateUserProfile = new UpdateUserProfile_Class(userList, user);
+            //UpdateUserProfile_Class updateUserProfile = new UpdateUserProfile_Class(userList, user);
 
-            userList = updateUserProfile.userList;
+            //userList = updateUserProfile.userList;
 
-            return StatusCode(200, updateUserProfile.userList);
+            //return StatusCode(200, updateUserProfile.userList);
 
             //return Ok("Användarprofil uppdaterad");
+
+            int originalUserId;
+            string originalUserFirstName;
+            string originalUserLastName;
+            string originalUserEmail;
+            long originalUserPhone;
+            string originalUserMailRecipient;
+            string originalUserStreet;
+            int originalUserZipCode;
+            string originalUserCity;
+            string originalUserCountry;
+
+            var userprofile = _context.users.Find(user.Id);
+
+            //originalUserId = _context.users.Find(user.Id - 1).Id;
+            originalUserFirstName = _context.users.Find(user.Id - 1).FirstName;
+            originalUserLastName = _context.users.Find(user.Id - 1).LastName;
+            originalUserEmail = _context.users.Find(user.Id - 1).Email;
+            originalUserPhone = _context.users.Find(user.Id - 1).Phone;
+            originalUserMailRecipient = _context.users.Find(user.Id - 1).MailRecipient;
+            originalUserStreet = _context.users.Find(user.Id - 1).Street;
+            originalUserZipCode = _context.users.Find(user.Id - 1).ZipCode;
+            originalUserCity = _context.users.Find(user.Id - 1).City;
+            originalUserCountry = _context.users.Find(user.Id - 1).Country;
+
+
+            userprofile.FirstName = user.FirstName;
+
+            if (userprofile.FirstName == null || userprofile.FirstName == "string") {
+
+                userprofile.FirstName = originalUserFirstName;
+
+            }
+
+            userprofile.LastName = user.LastName;
+
+            if (userprofile.LastName == null || userprofile.LastName == "string") {
+
+                userprofile.LastName = originalUserLastName;
+
+            }
+
+            userprofile.Email = user.Email;
+
+            if (userprofile.Email == null || userprofile.Email == "string") {
+
+                userprofile.Email = originalUserEmail;
+
+            }
+
+            userprofile.Phone = user.Phone;
+
+            if (userprofile.Phone == null || userprofile.Phone <= 99999) {//Expect telephone numbers to always be greater than 6 characters
+
+                userprofile.Phone = originalUserPhone;
+
+            }
+
+            userprofile.MailRecipient = user.MailRecipient;
+
+            if (userprofile.MailRecipient == null || userprofile.MailRecipient == "string") {
+
+                userprofile.MailRecipient = originalUserMailRecipient;
+
+            }
+
+            userprofile.Street = user.Street;
+
+            if (userprofile.Street == null || userprofile.Street == "string") {
+
+                userprofile.Street = originalUserStreet;
+
+            }
+
+            userprofile.ZipCode = user.ZipCode;
+
+            if (userprofile.ZipCode == null || userprofile.ZipCode <= 9999) {//Expect zipcodes to contain 5 characters
+
+                userprofile.ZipCode = originalUserZipCode;
+
+            }
+
+            userprofile.City = user.City;
+
+            if (userprofile.City == null || userprofile.City == "string") {
+
+                userprofile.City = originalUserCity;
+
+            }
+
+            userprofile.Country = user.Country;
+
+            if (userprofile.Country == null || userprofile.Country == "string") {
+
+                userprofile.Country = originalUserCountry;
+
+            }
+
+            await _context.SaveChangesAsync();
+
+            return StatusCode(200, _context.users);
 
         }
         
@@ -160,13 +265,97 @@
             //user.FirstName = userList[id].FirstName;
             //user.LastName = userList[id].LastName;
 
-            AddCourseToUserProfile_Class addCourseToUserProfile = new AddCourseToUserProfile_Class(userList/*, id*/, user, course);
-
-            userList = addCourseToUserProfile.userList;
-
-            return StatusCode(200, addCourseToUserProfile.userList);
+            //AddCourseToUserProfile_Class addCourseToUserProfile = new AddCourseToUserProfile_Class(userList/*, id*/, user, course);
+            //userList = addCourseToUserProfile.userList;
+            //return StatusCode(200, addCourseToUserProfile.userList);
 
             //return Ok("Kurs tillagd i användarprofil");
+
+
+
+
+
+
+
+
+
+
+
+/**/            List<Course> originalUserOwnedCourses;
+
+            var userprofile = _context.users.Find(user.Id);
+
+/**/            originalUserOwnedCourses = _context.users.Find(user.Id - 1).OwnedCourses;
+
+
+            //userprofile.OwnedCourses = user.OwnedCourses;
+
+            //var newCoursesToAdd = user.OwnedCourses;
+            //userprofile.OwnedCourses.AddRange(newCoursesToAdd);
+            //userprofile.OwnedCourses.AddRange(user.OwnedCourses);
+            var newCoursesToAdd = user.OwnedCourses[course.Id - 1];
+            userprofile.OwnedCourses.Add(newCoursesToAdd);
+
+            if (userprofile.OwnedCourses is null || userprofile.OwnedCourses.Count() == 0) {
+
+                userprofile.OwnedCourses = originalUserOwnedCourses;
+
+            }
+
+            await _context.SaveChangesAsync();
+
+            return StatusCode(200, _context.users);
+
+
+
+
+
+
+
+
+
+
+
+            //var userprofile = _context.users.Find(user.Id);
+            //var userprofile = _context.users.Find(user);
+            /*                var userprofile = _context.users.FirstOrDefault(user);
+
+                            //var userprofile = userList.Find(updateThisUser => updateThisUser.Id == courseToAdd.Id);
+
+                            userprofile.OwnedCourses.Add(course);
+                            _context.users.Add(userprofile);
+              */
+
+
+            //var userprofile = _context.users.Find(user.Id);
+
+            /*            var userprofile = _context.users.Find(user.Id);
+                        userprofile.OwnedCourses.Add(course);
+            */
+            //var userprofile = userList.Find(updateThisUser => updateThisUser.Id == courseToAdd.Id);
+
+            //userprofile.OwnedCourses.Add(course);
+            //_context.users.Find(user.Id).OwnedCourses.Add(course);
+            //_context.users.Add(userprofile);
+
+
+            //var oppsssie = _context.users.Find(user.Id);
+            //oppsssie.OwnedCourses.Add(course);
+
+
+
+
+
+
+
+
+
+
+
+/*            await _context.SaveChangesAsync();
+
+            return StatusCode(200, _context.users);
+*/            //return StatusCode(200, oppsssie);
 
         }
 
