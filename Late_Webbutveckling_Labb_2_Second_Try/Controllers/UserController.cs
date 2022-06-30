@@ -166,16 +166,22 @@
 
             var userprofile = _context.users.Find(user.Id);
 
+            if (userprofile is null) {
+
+                return StatusCode(400, "Kunde inte uppdatera användare");
+
+            }
+
             //originalUserId = _context.users.Find(user.Id - 1).Id;
-            originalUserFirstName = _context.users.Find(user.Id - 1).FirstName;
-            originalUserLastName = _context.users.Find(user.Id - 1).LastName;
-            originalUserEmail = _context.users.Find(user.Id - 1).Email;
-            originalUserPhone = _context.users.Find(user.Id - 1).Phone;
-            originalUserMailRecipient = _context.users.Find(user.Id - 1).MailRecipient;
-            originalUserStreet = _context.users.Find(user.Id - 1).Street;
-            originalUserZipCode = _context.users.Find(user.Id - 1).ZipCode;
-            originalUserCity = _context.users.Find(user.Id - 1).City;
-            originalUserCountry = _context.users.Find(user.Id - 1).Country;
+            originalUserFirstName = _context.users.Find(user.Id).FirstName;
+            originalUserLastName = _context.users.Find(user.Id).LastName;
+            originalUserEmail = _context.users.Find(user.Id).Email;
+            originalUserPhone = _context.users.Find(user.Id).Phone;
+            originalUserMailRecipient = _context.users.Find(user.Id).MailRecipient;
+            originalUserStreet = _context.users.Find(user.Id).Street;
+            originalUserZipCode = _context.users.Find(user.Id).ZipCode;
+            originalUserCity = _context.users.Find(user.Id).City;
+            originalUserCountry = _context.users.Find(user.Id).Country;
 
 
             userprofile.FirstName = user.FirstName;

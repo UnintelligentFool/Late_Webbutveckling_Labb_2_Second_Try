@@ -6,45 +6,45 @@ namespace Late_Webbutveckling_Labb_2_Second_Try.Controllers {
     [ApiController]
     public class CourseController : ControllerBase {
 
-        List<Course> courseList = new List<Course> {
+        //List<Course> courseList = new List<Course> {
 
-            new Course {
+        //    new Course {
 
-                Id = 1,
-                CourseTitle = "Carpenting",
-                CourseDescription = "If you ever wanted to be a skilled carpenter, this is the course for you!",
-                CourseNumber = 54398,
-                CourseLength = "2 years",
-                CourseDifficulty = "Advanced",
-                CourseStatus = true
+        //        Id = 1,
+        //        CourseTitle = "Carpenting",
+        //        CourseDescription = "If you ever wanted to be a skilled carpenter, this is the course for you!",
+        //        CourseNumber = 54398,
+        //        CourseLength = "2 years",
+        //        CourseDifficulty = "Advanced",
+        //        CourseStatus = true
 
-            },
+        //    },
 
-            new Course {
+        //    new Course {
 
-                Id = 2,
-                CourseTitle = "Basic Fletcher Course",
-                CourseDescription = "Ever asked yourself how to make simple arrows? Join us and find out how!",
-                CourseNumber = 93749,
-                CourseLength = "4 weeks",
-                CourseDifficulty = "Beginner",
-                CourseStatus = true
+        //        Id = 2,
+        //        CourseTitle = "Basic Fletcher Course",
+        //        CourseDescription = "Ever asked yourself how to make simple arrows? Join us and find out how!",
+        //        CourseNumber = 93749,
+        //        CourseLength = "4 weeks",
+        //        CourseDifficulty = "Beginner",
+        //        CourseStatus = true
 
-            },
+        //    },
 
-            new Course {
+        //    new Course {
 
-                Id = 3,
-                CourseTitle = "Coming Back Course",
-                CourseDescription = "If you are a professional within a certain field but by whatever reason have been absent for several years from it, here is a course for how to return to your previous fame and glory - while avoiding some usual misstakes.",
-                CourseNumber = 49874,
-                CourseLength = "3 months",
-                CourseDifficulty = "Expert",
-                CourseStatus = true
+        //        Id = 3,
+        //        CourseTitle = "Coming Back Course",
+        //        CourseDescription = "If you are a professional within a certain field but by whatever reason have been absent for several years from it, here is a course for how to return to your previous fame and glory - while avoiding some usual misstakes.",
+        //        CourseNumber = 49874,
+        //        CourseLength = "3 months",
+        //        CourseDifficulty = "Expert",
+        //        CourseStatus = true
 
-            }
+        //    }
 
-        };
+        //};
 
         //public CourseController() {
 
