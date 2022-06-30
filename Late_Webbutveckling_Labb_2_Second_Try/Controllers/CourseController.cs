@@ -121,29 +121,43 @@ namespace Late_Webbutveckling_Labb_2_Second_Try.Controllers {
         [HttpPut("/api/RetireCourse")]
         public async Task<ActionResult<List<Course>>> RetireCourse(Course retiringCourse) {
 
-            RetireCourse_Class retireCourse = new RetireCourse_Class(courseList, retiringCourse);
-
-            courseList = retireCourse.courseList;
-
-            return StatusCode(200, retireCourse.courseList);
-
+            //RetireCourse_Class retireCourse = new RetireCourse_Class(courseList, retiringCourse);
+            //courseList = retireCourse.courseList;
+            //return StatusCode(200, retireCourse.courseList);
             //return Ok("Kurs Pensionerad");
+
+            if (_context.courses.Find(retiringCourse.Id) is null) {
+
+                return StatusCode(400, "Pensionering Misslyckad");
+
+            }
+
+            var courseprofile = _context.courses.Find(retiringCourse.Id);
+
+            courseprofile.CourseStatus = retiringCourse.CourseStatus;
+
+            await _context.SaveChangesAsync();
+
+            return StatusCode(200, _context.courses);
 
         }
 
         [HttpDelete("/api/DeleteCourse/{id}")]
         public async Task<ActionResult<List<Course>>> DeleteCourse(int id) {
 
-            //DeleteCourse_Class deleteCourse = new DeleteCourse_Class(courseList, id);
-            //return StatusCode(200, deleteCourse.DeletingCourse(id));
-            //return Ok("Kurs borttagen");
+            if (_context.courses.Find(id) is null) {
 
+                return BadRequest("Kunde inte ta bort kurs");
+
+            }
 
             _context.courses.Remove(_context.courses.Find(id));
 
             await _context.SaveChangesAsync();
 
             return Ok(await _context.courses.ToListAsync());
+
+            //return Ok("Kurs borttagen");
 
         }
 
