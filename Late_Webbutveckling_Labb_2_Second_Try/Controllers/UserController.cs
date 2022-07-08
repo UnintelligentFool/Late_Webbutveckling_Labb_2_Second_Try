@@ -125,7 +125,7 @@
 
 
         [HttpPost("/api/AddUser")]
-        public async Task<ActionResult<List<User>>> AddUser(User user) {
+        public async Task<ActionResult<List<User>>> AddUser(User user, [FromForm] Course course) {
 
             //AddUser_Class addUser = new AddUser_Class(userList, user);
             //userList = addUser.userList;
@@ -134,14 +134,57 @@
 
             //return Ok("Användare registrerad");
 
+            //user.OwnedCourses.Add(new Course());
+
+
+
+
+
+
+            if (user is null) {
+
+                return StatusCode(400, "Kunde inte registrera användare");
+
+            }
+
+            await _context.users.AddAsync(user);
+
+            await _context.SaveChangesAsync();
+
+            await _context.Entry(user).Collection(newUser => newUser.OwnedCourses).LoadAsync();
+
+            var ownedCourses = new Course() {
+
+                Id = course.Id,
+                CourseNumber = course.CourseNumber,
+                CourseTitle = course.CourseTitle,
+                CourseDescription = course.CourseDescription,
+                CourseDifficulty = course.CourseDifficulty,
+                CourseLength = course.CourseLength,
+                CourseStatus = course.CourseStatus
+
+        };
+
+            //return StatusCode(200, _context.users);
+            //return CreatedAtRoute("Booom", new {id = course.Id}, ownedCourses);
+            //return CreatedAtAction("{id}", new {id = course.Id}, ownedCourses);
+            return StatusCode(200, (new {id = course.Id}, ownedCourses));
+
+
+
+
+
+
+            /*
             await _context.users.AddAsync(user);
 
             await _context.SaveChangesAsync();
 
             return StatusCode(200, _context.users);
+            */
 
         }
-        
+
         [HttpPut("/api/UpdateUserProfile")]
         public async Task<ActionResult<List<User>>> UpdateUserProfile(User user) {
 
@@ -262,8 +305,8 @@
 
         }
         
-        [HttpPut("/api/AddCourseToUserProfile")]//  /{id}
-        public async Task<ActionResult<List<User>>> AddCourseToUserProfile(/*int id,*/ User user, [FromQuery] Course course) {
+        [HttpPut("/api/AddCourseToUserProfile/{user}/{course}")]// ///{user}  /{id}
+        public async Task<ActionResult<List<User>>> AddCourseToUserProfile(/*int id,*/ /*[FromQuery]*/ [FromForm] User user, /*[FromQuery]*/ /*[FromForm]*/ /*[FromHeader]*/ /*[FromRoute]*/ Course course) {
 
             //User user = new User();
 
@@ -287,29 +330,136 @@
 
 
 
-/**/            List<Course> originalUserOwnedCourses;
 
-            var userprofile = _context.users.Find(user.Id);
+            Course courseHolder = new Course();
+            courseHolder.Id = course.Id;
+            courseHolder.CourseTitle = course.CourseTitle;
+            courseHolder.CourseNumber = course.CourseNumber;
+            courseHolder.CourseDescription = course.CourseDescription;
+            courseHolder.CourseLength = course.CourseLength;
+            courseHolder.CourseDifficulty = course.CourseDifficulty;
+            courseHolder.CourseStatus = course.CourseStatus;
 
-/**/            originalUserOwnedCourses = _context.users.Find(user.Id - 1).OwnedCourses;
 
 
-            //userprofile.OwnedCourses = user.OwnedCourses;
 
-            //var newCoursesToAdd = user.OwnedCourses;
-            //userprofile.OwnedCourses.AddRange(newCoursesToAdd);
-            //userprofile.OwnedCourses.AddRange(user.OwnedCourses);
-            var newCoursesToAdd = user.OwnedCourses[course.Id - 1];
-            userprofile.OwnedCourses.Add(newCoursesToAdd);
 
-            if (userprofile.OwnedCourses is null || userprofile.OwnedCourses.Count() == 0) {
+            //var userToReturn = _context.users.FirstOrDefaultAsync(findEmail => findEmail.Email == email).Result;
 
-                userprofile.OwnedCourses = originalUserOwnedCourses;
 
-            }
 
+            //var theUser = _context.users.FirstOrDefaultAsync(myUser => myUser.Id == course.Id).Result;
+            //theUser.OwnedCourses.Add(courseHolder);
+            //_context.users.FirstOrDefaultAsync(myUser => myUser.Id == course.Id).Result.OwnedCourses.Add(courseHolder);
+
+
+
+
+
+
+
+
+
+            //List<Course> theUser = new List<Course>();
+            //theUser.AddRange(_context.users.Find(user.Id).OwnedCourses);
+            //theUser.Add(courseHolder);
+
+            //if (theUser is null) {
+
+            //    return StatusCode(100, "theUser is null");
+
+            //}
+
+            //_context.users.Find(user.Id).OwnedCourses.AddRange(theUser);
+
+            _context.users.Find(user.Id).OwnedCourses.Add(course);
+
+
+
+            //_context.users.Select(i => i.OwnedCourses).FirstOrDefault().AddRange(theUser);
+
+
+
+
+
+
+
+
+
+
+            //_context.users.Find(user.Id).OwnedCourses.Add(courseHolder);
+
+
+
+
+
+
+
+
+
+
+            //var theUser = _context.users.Find(user.Id).OwnedCourses;
+            //theUser.Add(courseHolder);
+
+            //_context.users.Find(user.Id).OwnedCourses.Add(courseHolder);
+
+
+
+
+
+
+
+
+
+
+            //var theUser = _context.users.Find(user.Id).OwnedCourses;
+            //theUser.Add(course);
+            //_context.users.Find(user.Id).OwnedCourses = theUser;
+
+
+
+            //await _context.users.AddAsync(course);
+
+
+
+
+
+
+
+
+
+
+
+            /*            List<Course> originalUserOwnedCourses;
+
+                        var userprofile = _context.users.Find(user.Id);
+
+                        if (userprofile is null) {
+
+                            return StatusCode(200, "Kunde inte lägga till kurs i användarens profil");
+
+                        }
+
+                        originalUserOwnedCourses = _context.users.Find(user.Id).OwnedCourses;
+
+
+                        //userprofile.OwnedCourses = user.OwnedCourses;
+
+                        //var newCoursesToAdd = user.OwnedCourses;
+                        //userprofile.OwnedCourses.AddRange(newCoursesToAdd);
+                        //userprofile.OwnedCourses.AddRange(user.OwnedCourses);
+                        var newCoursesToAdd = user.OwnedCourses[course.Id];
+                        userprofile.OwnedCourses.Add(newCoursesToAdd);
+
+                        if (userprofile.OwnedCourses is null || userprofile.OwnedCourses.Count() == 0) {
+
+                            userprofile.OwnedCourses = originalUserOwnedCourses;
+
+                        }
+            */
             await _context.SaveChangesAsync();
 
+            //return StatusCode(200, _context.users);
             return StatusCode(200, _context.users);
 
 
@@ -358,10 +508,10 @@
 
 
 
-/*            await _context.SaveChangesAsync();
+            /*            await _context.SaveChangesAsync();
 
-            return StatusCode(200, _context.users);
-*/            //return StatusCode(200, oppsssie);
+                        return StatusCode(200, _context.users);
+            */            //return StatusCode(200, oppsssie);
 
         }
 

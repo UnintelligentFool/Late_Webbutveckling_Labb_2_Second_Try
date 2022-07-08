@@ -82,10 +82,20 @@
 
         } = String.Empty;
 
+/*        public List<Course> OwnedCourses {
+
+            get;
+            set;
+
+            //get => ownedCourses;
+            //set => ownedCourses = value;
+
+        }*/
+
         public List<Course> OwnedCourses {
 
-            get => ownedCourses;
-            set => ownedCourses = value;
+            get;
+            set;
 
         }
 
