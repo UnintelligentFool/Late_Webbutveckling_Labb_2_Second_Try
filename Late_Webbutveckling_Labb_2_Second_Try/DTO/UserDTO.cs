@@ -1,6 +1,5 @@
-﻿namespace Late_Webbutveckling_Labb_2_Second_Try.Models {
-    public class User {
-        private List<Course> ownedCourses;
+﻿namespace Late_Webbutveckling_Labb_2_Second_Try.DTO {
+    public class UserDTO {
 
         //Id
         public int Id {
@@ -82,17 +81,6 @@
 
         } = String.Empty;
 
-/*        public List<Course> OwnedCourses {
-
-            get;
-            set;
-
-            //get => ownedCourses;
-            //set => ownedCourses = value;
-
-        }*/
-        
-        [JsonIgnore]
         public List<Course>? OwnedCourses {
 
             get;
@@ -100,8 +88,15 @@
 
         }
 
-/*StartNy*/
-        //[JsonIgnore]
+        /*StartNy*/
+        //public int UserId {
+
+        //    get;
+
+        //    set;
+
+        //} = 1;
+
         //public Course? Course {
 
         //    get;
@@ -110,25 +105,23 @@
 
         //}
 
-        //public int CourseId {
+        public int CourseId {
 
-        //    get;
+            get;
 
-        //    set;
+            set;
 
-        //}
-/*EndNy*/
+        } = 1;
+
+        public List<Course>? courses {
+
+            get;
+
+            set;
+
+        }
+
+        /*EndNy*/
 
     }
 }
-
-//Id
-//FirstName
-//LastName
-//Email
-//Phone
-//MailRecipient
-//Street
-//ZipCode
-//City
-//Country

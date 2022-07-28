@@ -11,7 +11,7 @@
 
         //}
 
-        public List<User> userList = new List<User> {
+        /* public List<User> userList = new List<User> {
 
             new User {
 
@@ -61,7 +61,7 @@
 
             }
 
-        };
+        }; */
 
         //public UserController() {
 
@@ -89,14 +89,70 @@
 
         }
 
-        [HttpGet("/api/GetAllUsers")]
+        [HttpGet("/api/GetAllUsers")]/* Works */
         public async Task<ActionResult<List<User>>> GetAllUsers() {
 
+            //List<User> userList = new List<User>() {
+            //    foreach (var user in _context.users) {
+            //}
+            //};
+
+            //List<User> crusader = new List<User>{
+            //List<User> allUsers = new List<User>();
+            //    foreach (User user in _context.users) {
+
+            //    //Id
+            //    //FirstName
+            //    //LastName
+            //    //Email
+            //    //Phone
+            //    //MailRecipient
+            //    //Street
+            //    //ZipCode
+            //    //City
+            //    //Country
+
+            //    //user.Id.ToString();
+            //    //user.FirstName.ToString();
+            //    //user.LastName.ToString();
+            //    //user.Email.ToString();
+            //    //user.Phone.ToString();
+            //    //user.MailRecipient.ToString();
+            //    //user.Street.ToString();
+            //    //user.ZipCode.ToString();
+            //    //user.City.ToString();
+            //    //user.Country.ToString();
+            //    //user.OwnedCourses.ToList();
+
+            //    user.Id.ToString();
+            //    user.FirstName.ToString();
+            //    user.LastName.ToString();
+            //    user.Email.ToString();
+            //    user.Phone.ToString();
+            //    user.MailRecipient.ToString();
+            //    user.Street.ToString();
+            //    user.ZipCode.ToString();
+            //    user.City.ToString();
+            //    user.Country.ToString();
+            //    user.OwnedCourses.ToList();
+
+            //    allUsers.Add(user);
+
+            //}
+            //};
+
+            //return Ok(allUsers);
+
+
+
+            //return Ok(await _context.users.FirstOrDefaultAsync().Result.OwnedCourses);
+            
+            
             return Ok(await _context.users.ToListAsync());
 
         }
 
-        [HttpGet("/api/GetUserByEmail/{email}")]
+        [HttpGet("/api/GetUserByEmail/{email}")]/* Works */
         public async Task<ActionResult<User>> GetUserByEmail(string email) {
 
             //GetUserByEmail_Class getUserByEmail = new GetUserByEmail_Class(userList, email);
@@ -124,7 +180,7 @@
         }
 
 
-        [HttpPost("/api/AddUser")]
+        [HttpPost("/api/AddUser")]/* "The User field is required" error */
         public async Task<ActionResult<List<User>>> AddUser(User user, [FromForm] Course course) {
 
             //AddUser_Class addUser = new AddUser_Class(userList, user);
@@ -151,6 +207,8 @@
 
             await _context.SaveChangesAsync();
 
+            //https://github.com/VeronicaWasson/BookService/blob/master/BookService/Controllers/BooksController.cs
+
             await _context.Entry(user).Collection(newUser => newUser.OwnedCourses).LoadAsync();
 
             var ownedCourses = new Course() {
@@ -164,6 +222,8 @@
                 CourseStatus = course.CourseStatus
 
         };
+
+            await _context.SaveChangesAsync();
 
             //return StatusCode(200, _context.users);
             //return CreatedAtRoute("Booom", new {id = course.Id}, ownedCourses);
@@ -185,7 +245,7 @@
 
         }
 
-        [HttpPut("/api/UpdateUserProfile")]
+        [HttpPut("/api/UpdateUserProfile")] /* "The User field is required" error */
         public async Task<ActionResult<List<User>>> UpdateUserProfile(User user) {
 
             //UpdateUserProfile_Class updateUserProfile = new UpdateUserProfile_Class(userList, user);
@@ -305,7 +365,7 @@
 
         }
         
-        [HttpPut("/api/AddCourseToUserProfile/{user}/{course}")]// ///{user}  /{id}
+        [HttpPut("/api/AddCourseToUserProfile/{user}/{course}")] /* "The User field/OwnedCourses is required" errors */ // ///{user}  /{id}
         public async Task<ActionResult<List<User>>> AddCourseToUserProfile(/*int id,*/ /*[FromQuery]*/ [FromForm] User user, /*[FromQuery]*/ /*[FromForm]*/ /*[FromHeader]*/ /*[FromRoute]*/ Course course) {
 
             //User user = new User();

@@ -1,13 +1,5 @@
-﻿namespace Late_Webbutveckling_Labb_2_Second_Try.Models {
-    public class Course {
-
-        //Id
-        public int Id {
-
-            get;
-            set;
-
-        }
+﻿namespace Late_Webbutveckling_Labb_2_Second_Try.DTO {
+    public class CourseDTO {
 
         //Kursnummer
         public int CourseNumber {
@@ -15,7 +7,7 @@
             get;
             set;
 
-        }
+        } = 100;
 
         //Kurstitel
         public string CourseTitle {
@@ -55,33 +47,17 @@
             get;
             set;
 
-        }
+        } = true;
 
-/*StartNy*/
-[JsonIgnore]
-        public User User {
-
-            get;
-
-            set;
-        
-        }
-        
+        /*StartNy*/
         public int UserId {
 
             get;
 
             set;
 
-        }
-/*EndNy*/
+        } = 1;
+        /*EndNy*/
+
     }
 }
-
-//CourseTitle
-//CourseDescription
-//CourseNumber
-//CourseLength
-//CourseDifficulty
-//CourseStatus
-//Id

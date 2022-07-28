@@ -68,14 +68,111 @@ namespace Late_Webbutveckling_Labb_2_Second_Try.Controllers {
 
         }
 
-        [HttpGet("/api/GetAllCourses")]
+
+
+
+
+
+
+
+
+
+
+
+        /**/        [HttpGet]
+                public async Task<ActionResult<List<Course>>> Get(int userId) {
+
+                    var courses = await _context.courses
+                        .Where(c => c.UserId == userId)
+                        //.Include(c => c.CourseTitle)
+                        .ToListAsync();
+
+                    return courses;
+
+                } /**/
+
+        [HttpPost("/api/AddCourse")]
+        public async Task<ActionResult<List<Course>>> AddCourse(CourseDTO course) {
+
+            var user = await _context.users.FindAsync(course.UserId);
+            if (user is null) {
+
+                return NotFound();
+
+            }
+
+            var addingCourse = new Course {
+
+                CourseNumber = course.CourseNumber,
+                CourseTitle = course.CourseTitle,
+                CourseDescription = course.CourseDescription,
+                CourseLength = course.CourseLength,
+                CourseDifficulty = course.CourseDifficulty,
+                CourseStatus = course.CourseStatus,
+                User = user
+
+
+            };
+
+            _context.courses.Add(addingCourse);
+            await _context.SaveChangesAsync();
+
+            var coursesToReturn = await _context.courses.Where(correctCourse => correctCourse.UserId == addingCourse.UserId).ToListAsync();
+
+            return coursesToReturn;
+
+        }
+
+/*        [HttpPost]
+        public async Task<ActionResult<List<Course>>> Create(CreateCourseDTO course) {
+
+            var user = await _context.users.FindAsync(course.UserId);
+            if (user is null) {
+
+                return NotFound();
+            
+            }
+
+            var addingCourse = new Course {
+
+                CourseNumber = course.CourseNumber,
+                CourseTitle = course.CourseTitle,
+                CourseDescription = course.CourseDescription,
+                CourseLength = course.CourseLength,
+                CourseDifficulty = course.CourseDifficulty,
+                CourseStatus = course.CourseStatus,
+                User = user
+
+
+            };
+
+            _context.courses.Add(addingCourse);
+            await _context.SaveChangesAsync();
+
+            return await Get(addingCourse.UserId);
+
+        }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+        [HttpGet("/api/GetAllCourses")]/*Works*/
         public async Task<ActionResult<List<Course>>> GetAllCourses() {
 
             return Ok(await _context.courses.ToListAsync());
 
         }
 
-        [HttpGet("/api/GetSelectedCourse/{id}")]
+        [HttpGet("/api/GetSelectedCourse/{id}")]/* Works but only for specific entry in database with that ID not all identical entries */
         public async Task<ActionResult<Course>> GetSelectedCourse(int id) {
 
             var courseToReturn = _context.courses.FindAsync(id).Result;
@@ -101,8 +198,8 @@ namespace Late_Webbutveckling_Labb_2_Second_Try.Controllers {
 
         }
 
-        [HttpPost("/api/AddCourse")]
-        public async Task<ActionResult<List<Course>>> AddCourse(Course course) {
+        [HttpPost("/api/Old_AddCourse")]/* The user field is required *//* Old that used to work but not with recent changes */
+        public async Task<ActionResult<List<Course>>> Old_AddCourse(Course course) {
 
             //AddCourse_Class addCourse = new AddCourse_Class(courseList, course);
 
@@ -118,7 +215,7 @@ namespace Late_Webbutveckling_Labb_2_Second_Try.Controllers {
 
         }
         
-        [HttpPut("/api/RetireCourse")]
+        [HttpPut("/api/RetireCourse")]/* The user field is required */
         public async Task<ActionResult<List<Course>>> RetireCourse(Course retiringCourse) {
 
             //RetireCourse_Class retireCourse = new RetireCourse_Class(courseList, retiringCourse);
@@ -142,7 +239,7 @@ namespace Late_Webbutveckling_Labb_2_Second_Try.Controllers {
 
         }
 
-        [HttpDelete("/api/DeleteCourse/{id}")]
+        [HttpDelete("/api/DeleteCourse/{id}")]/* Works but only for specific entry in database with that ID not all identical entries */
         public async Task<ActionResult<List<Course>>> DeleteCourse(int id) {
 
             if (_context.courses.Find(id) is null) {
