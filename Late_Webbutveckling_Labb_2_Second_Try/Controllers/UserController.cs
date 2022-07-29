@@ -181,7 +181,7 @@
 
 
         [HttpPost("/api/AddUser")]/* "The User field is required" error */
-        public async Task<ActionResult<List<User>>> AddUser(User user, [FromForm] Course course) {
+        public async Task<ActionResult<List<User>>> AddUser(/*User user*/ UserDTO user, [FromForm] Course course) {
 
             //AddUser_Class addUser = new AddUser_Class(userList, user);
             //userList = addUser.userList;
@@ -197,39 +197,85 @@
 
 
 
+            /* StartNew */
+
             if (user is null) {
 
                 return StatusCode(400, "Kunde inte registrera användare");
 
             }
 
-            await _context.users.AddAsync(user);
+            var addingUser = new User {
 
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                Phone = user.Phone,
+                MailRecipient = user.MailRecipient,
+                Street = user.Street,
+                ZipCode = user.ZipCode,
+                City = user.City,
+                Country = user.Country,
+                OwnedCourses = user.OwnedCourses
+
+            };
+
+            _context.users.Add(addingUser);
             await _context.SaveChangesAsync();
 
-            //https://github.com/VeronicaWasson/BookService/blob/master/BookService/Controllers/BooksController.cs
+            var usersToReturn = await _context.users.Where(correctUser => correctUser.Id == addingUser.Id).ToListAsync();
 
-            await _context.Entry(user).Collection(newUser => newUser.OwnedCourses).LoadAsync();
+            return usersToReturn;
 
-            var ownedCourses = new Course() {
+            /* EndNew */
 
-                Id = course.Id,
-                CourseNumber = course.CourseNumber,
-                CourseTitle = course.CourseTitle,
-                CourseDescription = course.CourseDescription,
-                CourseDifficulty = course.CourseDifficulty,
-                CourseLength = course.CourseLength,
-                CourseStatus = course.CourseStatus
 
-        };
 
-            await _context.SaveChangesAsync();
 
-            //return StatusCode(200, _context.users);
-            //return CreatedAtRoute("Booom", new {id = course.Id}, ownedCourses);
-            //return CreatedAtAction("{id}", new {id = course.Id}, ownedCourses);
-            return StatusCode(200, (new {id = course.Id}, ownedCourses));
 
+
+
+
+
+
+
+
+
+            /* TidigareStart            if (user is null) {
+
+                            return StatusCode(400, "Kunde inte registrera användare");
+
+                        }
+
+                        await _context.users.AddAsync(user);
+
+                        await _context.SaveChangesAsync();
+
+                        //https://github.com/VeronicaWasson/BookService/blob/master/BookService/Controllers/BooksController.cs
+
+                        await _context.Entry(user).Collection(newUser => newUser.OwnedCourses).LoadAsync();
+
+                        var ownedCourses = new Course() {
+
+                            Id = course.Id,
+                            CourseNumber = course.CourseNumber,
+                            CourseTitle = course.CourseTitle,
+                            CourseDescription = course.CourseDescription,
+                            CourseDifficulty = course.CourseDifficulty,
+                            CourseLength = course.CourseLength,
+                            CourseStatus = course.CourseStatus
+
+                    };
+
+                        await _context.SaveChangesAsync();
+
+                        //return StatusCode(200, _context.users);
+                        //return CreatedAtRoute("Booom", new {id = course.Id}, ownedCourses);
+                        //return CreatedAtAction("{id}", new {id = course.Id}, ownedCourses);
+                        return StatusCode(200, (new {id = course.Id}, ownedCourses));
+
+            TidigareEnd */
 
 
 
@@ -366,7 +412,7 @@
         }
         
         [HttpPut("/api/AddCourseToUserProfile/{user}/{course}")] /* "The User field/OwnedCourses is required" errors */ // ///{user}  /{id}
-        public async Task<ActionResult<List<User>>> AddCourseToUserProfile(/*int id,*/ /*[FromQuery]*/ [FromForm] User user, /*[FromQuery]*/ /*[FromForm]*/ /*[FromHeader]*/ /*[FromRoute]*/ Course course) {
+        public async Task<ActionResult<List<User>>> AddCourseToUserProfile(/*int id,*/ /*[FromQuery]*/ /*[FromForm] int user*/ /*[FromForm] User user*/ [FromForm] UserDTO user, /*[FromQuery]*/ /*[FromForm]*/ /*[FromHeader]*/ /*[FromRoute]*/ Course course) {
 
             //User user = new User();
 
@@ -399,6 +445,10 @@
             courseHolder.CourseLength = course.CourseLength;
             courseHolder.CourseDifficulty = course.CourseDifficulty;
             courseHolder.CourseStatus = course.CourseStatus;
+            /* StartNew */
+            //courseHolder.User = course.User;
+            //courseHolder.UserId = course.UserId;
+            /* EndNew */
 
 
 
@@ -433,6 +483,7 @@
             //_context.users.Find(user.Id).OwnedCourses.AddRange(theUser);
 
             _context.users.Find(user.Id).OwnedCourses.Add(course);
+            //_context.users.Find(user).OwnedCourses.Add(course);
 
 
 

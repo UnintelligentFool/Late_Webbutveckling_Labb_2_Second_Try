@@ -79,7 +79,7 @@ namespace Late_Webbutveckling_Labb_2_Second_Try.Controllers {
 
 
 
-        /**/        [HttpGet]
+        /**/        [HttpGet("/api/GetCoursesForUser")]
                 public async Task<ActionResult<List<Course>>> Get(int userId) {
 
                     var courses = await _context.courses
@@ -93,11 +93,12 @@ namespace Late_Webbutveckling_Labb_2_Second_Try.Controllers {
 
         [HttpPost("/api/AddCourse")]
         public async Task<ActionResult<List<Course>>> AddCourse(CourseDTO course) {
-
+/*
             var user = await _context.users.FindAsync(course.UserId);
             if (user is null) {
 
-                return NotFound();
+                return StatusCode(404, "User to pair with course not found");
+                //return NotFound();
 
             }
 
@@ -120,7 +121,39 @@ namespace Late_Webbutveckling_Labb_2_Second_Try.Controllers {
             var coursesToReturn = await _context.courses.Where(correctCourse => correctCourse.UserId == addingCourse.UserId).ToListAsync();
 
             return coursesToReturn;
+*/
 
+            //var user = await _context.users.FindAsync(course.UserId);
+            //if (user is null) {
+
+            //    return StatusCode(404, "User to pair with course not found");
+            //    //return NotFound();
+
+            //}
+
+            //var user = await _context.users.FindAsync(course.UserId);
+
+            var addingCourse = new Course {
+
+                CourseNumber = course.CourseNumber,
+                CourseTitle = course.CourseTitle,
+                CourseDescription = course.CourseDescription,
+                CourseLength = course.CourseLength,
+                CourseDifficulty = course.CourseDifficulty,
+                CourseStatus = course.CourseStatus/*,
+                User = user */
+
+            };
+
+            _context.courses.Add(addingCourse);
+            await _context.SaveChangesAsync();
+
+            //var coursesToReturn = await _context.courses.Where(correctCourse => correctCourse.UserId == addingCourse.UserId).ToListAsync();
+
+            //return coursesToReturn;
+
+            return Ok(await _context.courses.ToListAsync());
+            
         }
 
 /*        [HttpPost]
@@ -215,6 +248,43 @@ namespace Late_Webbutveckling_Labb_2_Second_Try.Controllers {
 
         }
         
+        
+        
+        
+        
+
+
+
+
+
+        //[HttpPut("/api/RetireCourse")]/* The user field is required */
+        //public async Task<ActionResult<List<Course>>> RetireCourse(Course retiringCourse) {
+
+        //    if (_context.courses.Find(retiringCourse.Id) is null) {
+
+        //        return StatusCode(400, "Pensionering Misslyckad");
+
+        //    }
+
+        //    var courseprofile = _context.courses.Find(retiringCourse.Id);
+
+        //    courseprofile.CourseStatus = retiringCourse.CourseStatus;
+
+        //    await _context.SaveChangesAsync();
+
+        //    return StatusCode(200, _context.courses);
+
+        //}
+
+
+
+
+
+
+
+
+
+
         [HttpPut("/api/RetireCourse")]/* The user field is required */
         public async Task<ActionResult<List<Course>>> RetireCourse(Course retiringCourse) {
 

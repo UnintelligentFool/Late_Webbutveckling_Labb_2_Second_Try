@@ -113,13 +113,13 @@
 
         } = 1;
 
-        public List<Course>? courses {
+        //public List<Course>? courses {
 
-            get;
+        //    get;
 
-            set;
+        //    set;
 
-        }
+        //}
 
         /*EndNy*/
 
