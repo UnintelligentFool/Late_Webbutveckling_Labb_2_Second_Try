@@ -75,14 +75,14 @@
 
         }
 
-        [JsonIgnore]
-        public List<User>? users {
+        //[JsonIgnore]
+        //public List<User>? users {
 
-            get;
+        //    get;
 
-            set;
+        //    set;
 
-        }
+        //}
 
         /*EndNy*/
     }

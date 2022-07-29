@@ -626,5 +626,83 @@
 
         }
 
+
+
+
+
+
+
+
+        [HttpPut("/api/New_AddCourseToUserProfile/{user}/{course}")]
+        public async Task<ActionResult<List<User>>> New_AddCourseToUserProfile(/*int id,*/ /*[FromQuery]*/ /*[FromForm] int user*/ /*[FromForm] User user*/ [FromForm] User user, /*[FromQuery]*/ /*[FromForm]*/ /*[FromHeader]*/ /*[FromRoute]*/ Course course) {
+
+            if (user is null && course is null) {
+
+                BadRequest("There is no spoon, user or course.");
+
+            }
+
+            if (user is null) {
+
+                BadRequest("There is no spoon. Or user.");
+            
+            }
+
+            if (course is null) {
+
+                BadRequest("There is no spoon. Or course.");
+
+            }
+
+            Course courseHolder = new Course {
+                Id = course.Id,
+                CourseTitle = course.CourseTitle,
+                CourseNumber = course.CourseNumber,
+                CourseDescription = course.CourseDescription,
+                CourseLength = course.CourseLength,
+                CourseDifficulty = course.CourseDifficulty,
+                CourseStatus = course.CourseStatus,
+                User = user,
+                UserId = user.Id
+            };
+
+            //User existingUser = _context.users.Find(user.Id);
+            //existingUser.OwnedCourses.Add(courseHolder);
+
+            //_context.users.Find(user.Id).OwnedCourses.Add(course);
+
+            await _context.SaveChangesAsync();
+
+            //return StatusCode(200, _context.users);
+            //return StatusCode(200, existingUser);
+            return StatusCode(200, courseHolder);
+
+        }
+
+
+
+
+
+
+
+
+        [HttpPut("/api/AnotherNew_AddCourseToUserProfile/{user}/{course}")]
+        public async Task<ActionResult<List<Course>>> AnotherNew_AddCourseToUserProfile(Course course, int user) {
+
+            var courseprofile = _context.courses.Find(course.Id);
+
+            if (courseprofile is null) {
+
+                return StatusCode(400, "Unable to locate course");
+
+            }
+
+            courseprofile.UserId = user;
+
+            await _context.SaveChangesAsync();
+
+            return StatusCode(200, _context.courses);
+
+        }
     }
 }
