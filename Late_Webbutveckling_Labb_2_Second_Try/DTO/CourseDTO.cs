@@ -50,13 +50,20 @@
         } = true;
 
         /*StartNy*/
-        public int UserId {
+        public string UserId {
 
             get;
 
             set;
 
-        } = 1;
+        }
+        //public int UserId {
+
+        //    get;
+
+        //    set;
+
+        //} = 1;
         /*EndNy*/
 
     }

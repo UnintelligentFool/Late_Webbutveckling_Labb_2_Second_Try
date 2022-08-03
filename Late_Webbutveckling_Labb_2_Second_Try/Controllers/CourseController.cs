@@ -80,7 +80,7 @@ namespace Late_Webbutveckling_Labb_2_Second_Try.Controllers {
 
 
         /**/        [HttpGet("/api/GetCoursesForUser")]
-                public async Task<ActionResult<List<Course>>> Get(int userId) {
+                public async Task<ActionResult<List<Course>>> Get(/* int userId */ string userId) {
 
                     var courses = await _context.courses
                         .Where(c => c.UserId == userId)
@@ -123,6 +123,39 @@ namespace Late_Webbutveckling_Labb_2_Second_Try.Controllers {
             return coursesToReturn;
 */
 
+/**/
+            //var user = await _context.users.FindAsync(course.UserId);
+            //if (user is null) {
+
+            //    return StatusCode(404, "User to pair with course not found");
+            //    //return NotFound();
+
+            //}
+
+            var addingCourse = new Course {
+
+                CourseNumber = course.CourseNumber,
+                CourseTitle = course.CourseTitle,
+                CourseDescription = course.CourseDescription,
+                CourseLength = course.CourseLength,
+                CourseDifficulty = course.CourseDifficulty,
+                CourseStatus = course.CourseStatus,
+                //User = user,
+                UserId = ""
+
+
+            };
+
+            _context.courses.Add(addingCourse);
+            await _context.SaveChangesAsync();
+
+            //var coursesToReturn = await _context.courses.Where(correctCourse => correctCourse.UserId == addingCourse.UserId).ToListAsync();
+            
+            //return coursesToReturn;
+            return Ok("Kurs tillagd");
+/**/
+
+/*
             //var user = await _context.users.FindAsync(course.UserId);
             //if (user is null) {
 
@@ -140,8 +173,8 @@ namespace Late_Webbutveckling_Labb_2_Second_Try.Controllers {
                 CourseDescription = course.CourseDescription,
                 CourseLength = course.CourseLength,
                 CourseDifficulty = course.CourseDifficulty,
-                CourseStatus = course.CourseStatus/*,
-                User = user */
+                CourseStatus = course.CourseStatus//,
+                //User = user
 
             };
 
@@ -153,8 +186,15 @@ namespace Late_Webbutveckling_Labb_2_Second_Try.Controllers {
             //return coursesToReturn;
 
             return Ok(await _context.courses.ToListAsync());
+*/
             
         }
+
+
+
+
+
+
 
 /*        [HttpPost]
         public async Task<ActionResult<List<Course>>> Create(CreateCourseDTO course) {

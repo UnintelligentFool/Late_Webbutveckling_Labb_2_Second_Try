@@ -67,13 +67,21 @@
         
         }
         
-        public int UserId {
+        public string? UserId {
 
             get;
 
             set;
 
         }
+
+        //public int UserId {
+
+        //    get;
+
+        //    set;
+
+        //}
 
         //[JsonIgnore]
         //public List<User>? users {
