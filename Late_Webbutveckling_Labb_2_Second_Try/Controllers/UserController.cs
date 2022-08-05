@@ -3,84 +3,6 @@
     [ApiController]
     public class UserController : ControllerBase {
 
-        //private readonly API_Context _apiContext;
-
-        //public UserController(API_Context api_Context) {
-
-        //    _apiContext = api_Context;
-
-        //}
-
-        /* public List<User> userList = new List<User> {
-
-            new User {
-
-                Id = 1,
-                FirstName = "Adam",
-                LastName = "Savage",
-                Email = "adam@savage.com",
-                Phone = 0078833746,
-                MailRecipient = "Adam Savage",
-                Street = "Savagestreet 98",
-                ZipCode = 43543,
-                City = "Adamsville",
-                Country = "United Penguin Federation",
-                OwnedCourses = {}
-
-            },
-
-            new User {
-
-                Id = 2,
-                FirstName = "Katherine",
-                LastName = "Kerr",
-                Email = "kath@kerr.net",
-                Phone = 9838983966,
-                MailRecipient = "Katherine Kerr",
-                Street = "Dragonroad 7",
-                ZipCode = 74467,
-                City = "Lughcarn",
-                Country = "Deverry",
-                OwnedCourses = {}
-
-            },
-
-            new User {
-
-                Id = 3,
-                FirstName = "Elisabeth",
-                LastName = "Moon",
-                Email = "e@moon.com",
-                Phone = 6724308956,
-                MailRecipient = "Elisabeth Moon",
-                Street = "King's Street 16",
-                ZipCode = 10958,
-                City = "Verella",
-                Country = "Tsaia",
-                OwnedCourses = {}
-
-            }
-
-        }; */
-
-        //public UserController() {
-
-        //    userList.Add();
-
-        //    //Id
-        //    //FirstName
-        //    //LastName
-        //    //Email
-        //    //Phone
-        //    //MailRecipient
-        //    //Street
-        //    //ZipCode
-        //    //City
-        //    //Country
-
-        //}
-
-
         private readonly API_Context _context;
 
         public UserController(API_Context context) {
@@ -92,62 +14,6 @@
         [HttpGet("/api/GetAllUsers")]/* Works */
         public async Task<ActionResult<List<User>>> GetAllUsers() {
 
-            //List<User> userList = new List<User>() {
-            //    foreach (var user in _context.users) {
-            //}
-            //};
-
-            //List<User> crusader = new List<User>{
-            //List<User> allUsers = new List<User>();
-            //    foreach (User user in _context.users) {
-
-            //    //Id
-            //    //FirstName
-            //    //LastName
-            //    //Email
-            //    //Phone
-            //    //MailRecipient
-            //    //Street
-            //    //ZipCode
-            //    //City
-            //    //Country
-
-            //    //user.Id.ToString();
-            //    //user.FirstName.ToString();
-            //    //user.LastName.ToString();
-            //    //user.Email.ToString();
-            //    //user.Phone.ToString();
-            //    //user.MailRecipient.ToString();
-            //    //user.Street.ToString();
-            //    //user.ZipCode.ToString();
-            //    //user.City.ToString();
-            //    //user.Country.ToString();
-            //    //user.OwnedCourses.ToList();
-
-            //    user.Id.ToString();
-            //    user.FirstName.ToString();
-            //    user.LastName.ToString();
-            //    user.Email.ToString();
-            //    user.Phone.ToString();
-            //    user.MailRecipient.ToString();
-            //    user.Street.ToString();
-            //    user.ZipCode.ToString();
-            //    user.City.ToString();
-            //    user.Country.ToString();
-            //    user.OwnedCourses.ToList();
-
-            //    allUsers.Add(user);
-
-            //}
-            //};
-
-            //return Ok(allUsers);
-
-
-
-            //return Ok(await _context.users.FirstOrDefaultAsync().Result.OwnedCourses);
-            
-            
             return Ok(await _context.users.ToListAsync());
 
         }
@@ -155,18 +21,9 @@
         [HttpGet("/api/GetUserByEmail/{email}")]/* Works */
         public async Task<ActionResult<User>> GetUserByEmail(string email) {
 
-            //GetUserByEmail_Class getUserByEmail = new GetUserByEmail_Class(userList, email);
-
-            //return Ok(getUserByEmail.ReturnUserByEmail(email));
-            //return new ContentResult() { };
-            //return StatusCode(222, getUserByEmail.ReturnUserByEmail(email));
-            //return StatusCode(200, getUserByEmail.ReturnUserByEmail(email));
-            //return Ok("Användare med vald e-post visas");
-
-            //FirstOrDefaultAsync(e => e.Name == "abc000") //Lösning feån: https://entityframeworkcore.com/knowledge-base/54902969/ef-core-dealing-with-alternate-primary-keys
+            //FirstOrDefaultAsync(e => e.Name == "abc000") //Lösning från: https://entityframeworkcore.com/knowledge-base/54902969/ef-core-dealing-with-alternate-primary-keys
 
             var userToReturn = _context.users.FirstOrDefaultAsync(findEmail => findEmail.Email == email).Result;
-            //var userToReturn = userList.Find(returnValue => returnValue.Email == userEmail);
             
             if (userToReturn is null) {
 
@@ -174,30 +31,13 @@
 
             }
 
-            //return await _context.courses.FindAsync(id);
             return Ok(userToReturn);
 
         }
 
 
-        [HttpPost("/api/AddUser")]/* "The User field is required" error */
+        [HttpPost("/api/AddUser")]
         public async Task<ActionResult<List<User>>> AddUser(/*User user*/ UserDTO user, [FromForm] Course course) {
-
-            //AddUser_Class addUser = new AddUser_Class(userList, user);
-            //userList = addUser.userList;
-            //return StatusCode(200, addUser.userList);
-            //return Ok(addUser);
-
-            //return Ok("Användare registrerad");
-
-            //user.OwnedCourses.Add(new Course());
-
-
-
-
-
-
-            /* StartNew */
 
             if (user is null) {
 
@@ -228,79 +68,10 @@
 
             return usersToReturn;
 
-            /* EndNew */
-
-
-
-
-
-
-
-
-
-
-
-
-
-            /* TidigareStart            if (user is null) {
-
-                            return StatusCode(400, "Kunde inte registrera användare");
-
-                        }
-
-                        await _context.users.AddAsync(user);
-
-                        await _context.SaveChangesAsync();
-
-                        //https://github.com/VeronicaWasson/BookService/blob/master/BookService/Controllers/BooksController.cs
-
-                        await _context.Entry(user).Collection(newUser => newUser.OwnedCourses).LoadAsync();
-
-                        var ownedCourses = new Course() {
-
-                            Id = course.Id,
-                            CourseNumber = course.CourseNumber,
-                            CourseTitle = course.CourseTitle,
-                            CourseDescription = course.CourseDescription,
-                            CourseDifficulty = course.CourseDifficulty,
-                            CourseLength = course.CourseLength,
-                            CourseStatus = course.CourseStatus
-
-                    };
-
-                        await _context.SaveChangesAsync();
-
-                        //return StatusCode(200, _context.users);
-                        //return CreatedAtRoute("Booom", new {id = course.Id}, ownedCourses);
-                        //return CreatedAtAction("{id}", new {id = course.Id}, ownedCourses);
-                        return StatusCode(200, (new {id = course.Id}, ownedCourses));
-
-            TidigareEnd */
-
-
-
-
-
-            /*
-            await _context.users.AddAsync(user);
-
-            await _context.SaveChangesAsync();
-
-            return StatusCode(200, _context.users);
-            */
-
         }
 
-        [HttpPut("/api/UpdateUserProfile")] /* "The User field is required" error */
+        [HttpPut("/api/UpdateUserProfile")]
         public async Task<ActionResult<List<User>>> UpdateUserProfile(User user) {
-
-            //UpdateUserProfile_Class updateUserProfile = new UpdateUserProfile_Class(userList, user);
-
-            //userList = updateUserProfile.userList;
-
-            //return StatusCode(200, updateUserProfile.userList);
-
-            //return Ok("Användarprofil uppdaterad");
 
             int originalUserId;
             string originalUserFirstName;
@@ -321,7 +92,6 @@
 
             }
 
-            //originalUserId = _context.users.Find(user.Id - 1).Id;
             originalUserFirstName = _context.users.Find(user.Id).FirstName;
             originalUserLastName = _context.users.Find(user.Id).LastName;
             originalUserEmail = _context.users.Find(user.Id).Email;
@@ -411,283 +181,8 @@
 
         }
 
-        ////////       [HttpPut("/api/Old_AddCourseToUserProfile/{user}/{course}")] /* "The User field/OwnedCourses is required" errors */ // ///{user}  /{id}
-        ////////       public async Task<ActionResult<List<User>>> Old_AddCourseToUserProfile(/*int id,*/ /*[FromQuery]*/ /*[FromForm] int user*/ /*[FromForm] User user*/ [FromForm] UserDTO user, /*[FromQuery]*/ /*[FromForm]*/ /*[FromHeader]*/ /*[FromRoute]*/ Course course) {
-        ////////
-        ////////           //User user = new User();
-        ////////
-        ////////           //user.Id = id;
-        ////////           //user.FirstName = userList[id].FirstName;
-        ////////           //user.LastName = userList[id].LastName;
-        ////////
-        ////////           //AddCourseToUserProfile_Class addCourseToUserProfile = new AddCourseToUserProfile_Class(userList/*, id*/, user, course);
-        ////////           //userList = addCourseToUserProfile.userList;
-        ////////           //return StatusCode(200, addCourseToUserProfile.userList);
-        ////////
-        ////////           //return Ok("Kurs tillagd i användarprofil");
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////           Course courseHolder = new Course();
-        ////////           courseHolder.Id = course.Id;
-        ////////           courseHolder.CourseTitle = course.CourseTitle;
-        ////////           courseHolder.CourseNumber = course.CourseNumber;
-        ////////           courseHolder.CourseDescription = course.CourseDescription;
-        ////////           courseHolder.CourseLength = course.CourseLength;
-        ////////           courseHolder.CourseDifficulty = course.CourseDifficulty;
-        ////////           courseHolder.CourseStatus = course.CourseStatus;
-        ////////           /* StartNew */
-        ////////           //courseHolder.User = course.User;
-        ////////           //courseHolder.UserId = course.UserId;
-        ////////           /* EndNew */
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////           //var userToReturn = _context.users.FirstOrDefaultAsync(findEmail => findEmail.Email == email).Result;
-        ////////
-        ////////
-        ////////
-        ////////           //var theUser = _context.users.FirstOrDefaultAsync(myUser => myUser.Id == course.Id).Result;
-        ////////           //theUser.OwnedCourses.Add(courseHolder);
-        ////////           //_context.users.FirstOrDefaultAsync(myUser => myUser.Id == course.Id).Result.OwnedCourses.Add(courseHolder);
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////           //List<Course> theUser = new List<Course>();
-        ////////           //theUser.AddRange(_context.users.Find(user.Id).OwnedCourses);
-        ////////           //theUser.Add(courseHolder);
-        ////////
-        ////////           //if (theUser is null) {
-        ////////
-        ////////           //    return StatusCode(100, "theUser is null");
-        ////////
-        ////////           //}
-        ////////
-        ////////           //_context.users.Find(user.Id).OwnedCourses.AddRange(theUser);
-        ////////
-        ////////           _context.users.Find(user.Id).OwnedCourses.Add(course);
-        ////////           //_context.users.Find(user).OwnedCourses.Add(course);
-        ////////
-        ////////
-        ////////
-        ////////           //_context.users.Select(i => i.OwnedCourses).FirstOrDefault().AddRange(theUser);
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////           //_context.users.Find(user.Id).OwnedCourses.Add(courseHolder);
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////           //var theUser = _context.users.Find(user.Id).OwnedCourses;
-        ////////           //theUser.Add(courseHolder);
-        ////////
-        ////////           //_context.users.Find(user.Id).OwnedCourses.Add(courseHolder);
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////           //var theUser = _context.users.Find(user.Id).OwnedCourses;
-        ////////           //theUser.Add(course);
-        ////////           //_context.users.Find(user.Id).OwnedCourses = theUser;
-        ////////
-        ////////
-        ////////
-        ////////           //await _context.users.AddAsync(course);
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////           /*            List<Course> originalUserOwnedCourses;
-        ////////
-        ////////                       var userprofile = _context.users.Find(user.Id);
-        ////////
-        ////////                       if (userprofile is null) {
-        ////////
-        ////////                           return StatusCode(200, "Kunde inte lägga till kurs i användarens profil");
-        ////////
-        ////////                       }
-        ////////
-        ////////                       originalUserOwnedCourses = _context.users.Find(user.Id).OwnedCourses;
-        ////////
-        ////////
-        ////////                       //userprofile.OwnedCourses = user.OwnedCourses;
-        ////////
-        ////////                       //var newCoursesToAdd = user.OwnedCourses;
-        ////////                       //userprofile.OwnedCourses.AddRange(newCoursesToAdd);
-        ////////                       //userprofile.OwnedCourses.AddRange(user.OwnedCourses);
-        ////////                       var newCoursesToAdd = user.OwnedCourses[course.Id];
-        ////////                       userprofile.OwnedCourses.Add(newCoursesToAdd);
-        ////////
-        ////////                       if (userprofile.OwnedCourses is null || userprofile.OwnedCourses.Count() == 0) {
-        ////////
-        ////////                           userprofile.OwnedCourses = originalUserOwnedCourses;
-        ////////
-        ////////                       }
-        ////////           */
-        ////////           await _context.SaveChangesAsync();
-        ////////
-        ////////           //return StatusCode(200, _context.users);
-        ////////           return StatusCode(200, _context.users);
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////           //var userprofile = _context.users.Find(user.Id);
-        ////////           //var userprofile = _context.users.Find(user);
-        ////////           /*                var userprofile = _context.users.FirstOrDefault(user);
-        ////////
-        ////////                           //var userprofile = userList.Find(updateThisUser => updateThisUser.Id == courseToAdd.Id);
-        ////////
-        ////////                           userprofile.OwnedCourses.Add(course);
-        ////////                           _context.users.Add(userprofile);
-        ////////             */
-        ////////
-        ////////
-        ////////           //var userprofile = _context.users.Find(user.Id);
-        ////////
-        ////////           /*            var userprofile = _context.users.Find(user.Id);
-        ////////                       userprofile.OwnedCourses.Add(course);
-        ////////           */
-        ////////           //var userprofile = userList.Find(updateThisUser => updateThisUser.Id == courseToAdd.Id);
-        ////////
-        ////////           //userprofile.OwnedCourses.Add(course);
-        ////////           //_context.users.Find(user.Id).OwnedCourses.Add(course);
-        ////////           //_context.users.Add(userprofile);
-        ////////
-        ////////
-        ////////           //var oppsssie = _context.users.Find(user.Id);
-        ////////           //oppsssie.OwnedCourses.Add(course);
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////
-        ////////           /*            await _context.SaveChangesAsync();
-        ////////
-        ////////                       return StatusCode(200, _context.users);
-        ////////           */            //return StatusCode(200, oppsssie);
-        ////////
-        ////////       }
-
-
-
-
-
-
-
-
-        //////        [HttpPut("/api/New_AddCourseToUserProfile/{user}/{course}")]
-        //////        public async Task<ActionResult<List<User>>> New_AddCourseToUserProfile(/*int id,*/ /*[FromQuery]*/ /*[FromForm] int user*/ /*[FromForm] User user*/ [FromForm] User user, /*[FromQuery]*/ /*[FromForm]*/ /*[FromHeader]*/ /*[FromRoute]*/ Course course) {
-        //////
-        //////            if (user is null && course is null) {
-        //////
-        //////                BadRequest("There is no spoon, user or course.");
-        //////
-        //////            }
-        //////
-        //////            if (user is null) {
-        //////
-        //////                BadRequest("There is no spoon. Or user.");
-        //////            
-        //////            }
-        //////
-        //////            if (course is null) {
-        //////
-        //////                BadRequest("There is no spoon. Or course.");
-        //////
-        //////            }
-        //////
-        //////            Course courseHolder = new Course {
-        //////                Id = course.Id,
-        //////                CourseTitle = course.CourseTitle,
-        //////                CourseNumber = course.CourseNumber,
-        //////                CourseDescription = course.CourseDescription,
-        //////                CourseLength = course.CourseLength,
-        //////                CourseDifficulty = course.CourseDifficulty,
-        //////                CourseStatus = course.CourseStatus,
-        //////                User = user,
-        //////                UserId = user.Id
-        //////            };
-        //////
-        //////            //User existingUser = _context.users.Find(user.Id);
-        //////            //existingUser.OwnedCourses.Add(courseHolder);
-        //////
-        //////            //_context.users.Find(user.Id).OwnedCourses.Add(course);
-        //////
-        //////            await _context.SaveChangesAsync();
-        //////
-        //////            //return StatusCode(200, _context.users);
-        //////            //return StatusCode(200, existingUser);
-        //////            return StatusCode(200, courseHolder);
-        //////
-        //////        }
-
-
-
-
-
-
-
-
         [HttpPut("/api/AddCourseToUserProfile/{user}/{course}")]
-        public async Task<ActionResult<List<Course>>> AddCourseToUserProfile(Course course, /* int user */ string user) {
+        public async Task<ActionResult<List<Course>>> AddCourseToUserProfile(Course course, string user) {
 
             var courseprofile = _context.courses.Find(course.Id);
 

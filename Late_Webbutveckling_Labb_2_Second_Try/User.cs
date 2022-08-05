@@ -82,16 +82,6 @@
 
         } = String.Empty;
 
-/*        public List<Course> OwnedCourses {
-
-            get;
-            set;
-
-            //get => ownedCourses;
-            //set => ownedCourses = value;
-
-        }*/
-        
         [JsonIgnore]
         public List<Course>? OwnedCourses {
 
@@ -99,25 +89,6 @@
             set;
 
         }
-
-/*StartNy*/
-        //[JsonIgnore]
-        //public Course? Course {
-
-        //    get;
-
-        //    set;
-
-        //}
-
-        //public int CourseId {
-
-        //    get;
-
-        //    set;
-
-        //}
-/*EndNy*/
 
     }
 }

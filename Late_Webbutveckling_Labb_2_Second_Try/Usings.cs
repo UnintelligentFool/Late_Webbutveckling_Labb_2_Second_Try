@@ -13,3 +13,5 @@ global using System.Linq;
 global using System.Text.Json.Serialization;
 
 global using Late_Webbutveckling_Labb_2_Second_Try.DTO;
+
+global using Microsoft.AspNetCore.Builder;

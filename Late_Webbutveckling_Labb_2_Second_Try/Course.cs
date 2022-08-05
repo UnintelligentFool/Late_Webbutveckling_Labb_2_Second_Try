@@ -57,8 +57,7 @@
 
         }
 
-/*StartNy*/
-[JsonIgnore]
+        [JsonIgnore]
         public User? User {//Måste acceptera Null värden för att fungera med RetireCourse
 
             get;
@@ -74,25 +73,6 @@
             set;
 
         }
-
-        //public int UserId {
-
-        //    get;
-
-        //    set;
-
-        //}
-
-        //[JsonIgnore]
-        //public List<User>? users {
-
-        //    get;
-
-        //    set;
-
-        //}
-
-        /*EndNy*/
     }
 }
 

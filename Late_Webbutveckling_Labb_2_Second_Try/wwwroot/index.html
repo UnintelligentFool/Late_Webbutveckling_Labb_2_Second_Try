@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/x-icon" href="images/favicon.png" />
+    <link rel="stylesheet" href="css/CSS.css" />
+    <title>Niklas Erikssons Labb 2 API</title>
+</head>
+<body>
+
+    <section>
+
+        <h2><b><i>Kurser</i></b></h2>
+        
+
+        <h3>Hämta alla kurser</h3>
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>CourseTitle</th>
+                <th>CourseDescription</th>
+                <th>CourseNumber</th>
+                <th>CourseLength</th>
+                <th>CourseDifficulty</th>
+                <th>CourseStatus</th>
+            </tr>
+        </table><br />
+        <button type="submit">Hämta alla kurser</button>
+        <br />
+
+
+        <h3>Hämta kursen med specifikt kurs-id</h3>
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>CourseTitle</th>
+                <th>CourseDescription</th>
+                <th>CourseNumber</th>
+                <th>CourseLength</th>
+                <th>CourseDifficulty</th>
+                <th>CourseStatus</th>
+            </tr>
+        </table><br />
+        <input type="id" placeholder="Ange kurs id" /><br />
+        <button type="submit">Hämta vald kurs</button>
+        <br />
+
+
+        <h3>Lägga till kurs</h3>
+        <form method="post" action="/api/AddCourse">
+            <input type="CourseTitle" placeholder="Ange kurs titel" /><br />
+            <input type="CourseDescription" placeholder="Beskriv kursen" /><br />
+            <input type="CourseNumber" placeholder="Ange kursnummer" /><br />
+            <input type="CourseLength" placeholder="Ange kurslängd" /><br />
+            <input type="CourseDifficulty" placeholder="Ange svårighetsgrad på kursen" /><br />
+            <input type="CourseStatus" placeholder="Ange true om aktiv eller false om pensionerad" /><br />
+            <button type="submit">Lägg till kurs</button>
+        </form>
+        <br />
+
+
+        <h3>Pensionera kurs</h3>
+        <form method="put" action="/api/RetireCourse">
+            <input type="CourseStatus" placeholder="Ange kurs id" /><br />
+            <button type="submit">Pensionera kurs</button>
+        </form>
+        <br />
+
+
+        <h3>Ta bort kurs</h3>
+        <form method="delete" action="/api/DeleteCourse">
+            <input type="Id" placeholder="Ange kurs id" /><br />
+            <button type="submit">Ta bort kurs</button>
+        </form>
+        <br />
+
+    </section>
+
+
+    
+
+
+
+    <section>
+
+        <h2><b><i>Användare</i></b></h2>
+        
+
+        <h3>Lista alla användare</h3>
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>MailRecipient</th>
+                <th>Street</th>
+                <th>ZipCode</th>
+                <th>City</th>
+                <th>Country</th>
+            </tr>
+        </table><br />
+        <button type="submit">Lista alla användare</button>
+        <br />
+
+
+        <h3>Finn användare som har specifik e-postadress</h3>
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>MailRecipient</th>
+                <th>Street</th>
+                <th>ZipCode</th>
+                <th>City</th>
+                <th>Country</th>
+            </tr>
+        </table><br />
+        <input type="email" placeholder="Ange e-post" /><br />
+        <button type="submit">Finn användare via e-post</button>
+        <br />
+
+
+        <h3>Registrera användarprofil i databasen</h3>
+        <form method="post" action="/api/AddUser">
+            <input type="FirstName" placeholder="First Name" /><br />
+            <input type="LastName" placeholder="Last Name" /><br />
+            <input type="Email" placeholder="Email" /><br />
+            <input type="Phone" placeholder="Phone" /><br />
+            <input type="MailRecipient" placeholder="MailRecipient" /><br />
+            <input type="Street" placeholder="Street" /><br />
+            <input type="ZipCode" placeholder="ZipCode" /><br />
+            <input type="City" placeholder="City" /><br />
+            <input type="Country" placeholder="Country" /><br />
+            <button type="submit">Registrera användare</button>
+        </form>
+        <br />
+
+
+        <h3>Uppdatera användarprofil</h3>
+        <form method="" action="/api/">
+            <input type="FirstName" placeholder="First Name" /><br />
+            <input type="LastName" placeholder="Last Name" /><br />
+            <input type="Email" placeholder="Email" /><br />
+            <input type="Phone" placeholder="Phone" /><br />
+            <input type="MailRecipient" placeholder="MailRecipient" /><br />
+            <input type="Street" placeholder="Street" /><br />
+            <input type="ZipCode" placeholder="ZipCode" /><br />
+            <input type="City" placeholder="City" /><br />
+            <input type="Country" placeholder="Country" /><br />
+            <button type="submit">Uppdatera användare</button>
+        </form>
+        <br />
+
+
+        <h3>Lägg till köpt kurs i användarprofil</h3>
+        <form method="" action="/api/">
+            <input type="User" placeholder="Ange användarens id" /><br />
+            <input type="Course" placeholder="Ange kurs id" /><br />
+            <button type="submit">Lägg till kurs i användarprofil</button>
+        </form>
+        <br />
+
+    </section>
+
+
+
+
+
+
+
+
+
+    <section>
+
+        <form method="get" action="index/api/GetACourse"> <!-- action="../index/api/GetACourse" -->
+
+            <table>
+
+                <tr>
+                    <td></td>
+                </tr>
+
+            </table>
+
+            <button type="submit">Get all courses</button>
+
+        </form>
+
+        <form method="post" action="/api/AddCourse">
+
+        <input type="text" />
+        <button type="submit">Post to AddCourse</button>
+
+        </form>
+
+    </section>
+
+
+
+
+
+
+
+
+    <script src="js/js.js"></script>
+</body>
+</html>

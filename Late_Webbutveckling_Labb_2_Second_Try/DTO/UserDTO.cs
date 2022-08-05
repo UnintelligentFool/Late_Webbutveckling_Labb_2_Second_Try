@@ -88,23 +88,6 @@
 
         }
 
-        /*StartNy*/
-        //public int UserId {
-
-        //    get;
-
-        //    set;
-
-        //} = 1;
-
-        //public Course? Course {
-
-        //    get;
-
-        //    set;
-
-        //}
-
         public int CourseId {
 
             get;
@@ -112,16 +95,6 @@
             set;
 
         } = 1;
-
-        //public List<Course>? courses {
-
-        //    get;
-
-        //    set;
-
-        //}
-
-        /*EndNy*/
 
     }
 }
