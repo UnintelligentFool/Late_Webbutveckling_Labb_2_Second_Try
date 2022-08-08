@@ -55,3 +55,42 @@ input {
     font-size: large;
 
 }
+
+
+
+table {
+    
+    border: 1px solid;
+    
+}
+
+th {
+
+    background-color: #ffff88;
+    padding: 3px;
+
+}
+
+td {
+
+    text-align: center;
+    background-color: #eeeeee;
+    border: 1.5px solid;
+    padding: 5px;
+
+}
+
+
+
+
+
+
+
+
+
+/* testTable {
+
+    color: green;
+    background-color: yellow;
+
+} */

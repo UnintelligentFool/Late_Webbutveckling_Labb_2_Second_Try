@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <link rel="icon" type="image/x-icon" href="images/favicon.png" />
     <link rel="stylesheet" href="css/CSS.css" />
+    <!--<script src="js/js.js"></script>-->
     <title>Niklas Erikssons Labb 2 API</title>
 </head>
 <body>
@@ -14,6 +15,7 @@
         
 
         <h3>Hämta alla kurser</h3>
+        <form action="javascript:void(0);" method="get" onsubmit="ShowingAllCourses()">
         <table>
             <tr>
                 <th>Id</th>
@@ -24,12 +26,21 @@
                 <th>CourseDifficulty</th>
                 <th>CourseStatus</th>
             </tr>
+            <tbody id="showAllCourses"></tbody>
         </table><br />
-        <button type="submit">Hämta alla kurser</button>
+        <!-- <form action="js/js.js" onsubmit="ShowingAllCourses()"> -->
+        <!-- <form action="js/js.js" method="get" onsubmit="ShowingAllCourses()"> -->
+        <!-- <form action="api/GetAllCourses" method="get" onsubmit="ShowingAllCourses()"> -->
+        <!-- <form action="html/javascript" method="get" onsubmit="ShowingAllCourses()"> -->
+            <!--<button name="GetAllCourses" type="submit" onsubmit="ShowingAllCourses()">Hämta alla kurser</button>-->
+            <button name="GetAllCourses" type="submit">Hämta alla kurser</button>
+        <!-- </form> -->
+        </form>
         <br />
 
 
         <h3>Hämta kursen med specifikt kurs-id</h3>
+        <form action="javascript:void(0);" method="get" onsubmit="ShowingSelectedCourse(loadThisCourse.value)">
         <table>
             <tr>
                 <th>Id</th>
@@ -40,28 +51,30 @@
                 <th>CourseDifficulty</th>
                 <th>CourseStatus</th>
             </tr>
+            <tbody id="showSelectedCourse"></tbody>
         </table><br />
-        <input type="id" placeholder="Ange kurs id" /><br />
+        <input name="loadThisCourse" placeholder="Ange kurs id" /><br />
         <button type="submit">Hämta vald kurs</button>
+        </form>
         <br />
 
 
         <h3>Lägga till kurs</h3>
-        <form method="post" action="/api/AddCourse">
-            <input type="CourseTitle" placeholder="Ange kurs titel" /><br />
-            <input type="CourseDescription" placeholder="Beskriv kursen" /><br />
-            <input type="CourseNumber" placeholder="Ange kursnummer" /><br />
-            <input type="CourseLength" placeholder="Ange kurslängd" /><br />
-            <input type="CourseDifficulty" placeholder="Ange svårighetsgrad på kursen" /><br />
-            <input type="CourseStatus" placeholder="Ange true om aktiv eller false om pensionerad" /><br />
+        <form action="javascript:void(0);" method="post" onsubmit="AddACourse()">
+            <input type="text" name="CourseTitle" placeholder="Ange kurs titel" /><br />
+            <input type="text" name="CourseDescription" placeholder="Beskriv kursen" /><br />
+            <input type="text" name="CourseNumber" placeholder="Ange kursnummer" /><br />
+            <input type="text" name="CourseLength" placeholder="Ange kurslängd" /><br />
+            <input type="text" name="CourseDifficulty" placeholder="Ange svårighetsgrad på kursen" /><br />
+            <input type="text" name="CourseStatus" placeholder="Ange true om aktiv eller false om pensionerad" /><br />
             <button type="submit">Lägg till kurs</button>
         </form>
         <br />
 
 
         <h3>Pensionera kurs</h3>
-        <form method="put" action="/api/RetireCourse">
-            <input type="CourseStatus" placeholder="Ange kurs id" /><br />
+        <form action="javascript:void(0);" method="post" onsubmit="RetireSelectedCourse(CourseStatus.value)">
+            <input name="CourseStatus" placeholder="Ange kurs id" /><br />
             <button type="submit">Pensionera kurs</button>
         </form>
         <br />
@@ -87,6 +100,7 @@
         
 
         <h3>Lista alla användare</h3>
+        <form action="javascript:void(0);" method="get" onsubmit="ShowingAllUsers()">
         <table>
             <tr>
                 <th>Id</th>
@@ -100,12 +114,15 @@
                 <th>City</th>
                 <th>Country</th>
             </tr>
+            <tbody id="showAllUsers"></tbody>
         </table><br />
-        <button type="submit">Lista alla användare</button>
+        <button name="GetAllUsers" type="submit">Lista alla användare</button>
+        </form>
         <br />
 
 
         <h3>Finn användare som har specifik e-postadress</h3>
+        <form action="javascript:void(0);" method="get" onsubmit="ShowingSelectedUser(loadThisUser.value)">
         <table>
             <tr>
                 <th>Id</th>
@@ -119,9 +136,11 @@
                 <th>City</th>
                 <th>Country</th>
             </tr>
+            <tbody id="showSelectedUser"></tbody>
         </table><br />
-        <input type="email" placeholder="Ange e-post" /><br />
+        <input name="loadThisUser" placeholder="Ange e-post" /><br />
         <button type="submit">Finn användare via e-post</button>
+        </form>
         <br />
 
 
@@ -175,9 +194,10 @@
 
 
 
+<!--
     <section>
 
-        <form method="get" action="index/api/GetACourse"> <!-- action="../index/api/GetACourse" -->
+        <form method="get" action="index/api/GetACourse">
 
             <table>
 
@@ -199,7 +219,24 @@
         </form>
 
     </section>
+-->
 
+
+
+
+
+
+
+<!--
+    <section>
+
+        <table id="myTestTable" class="testTable">
+            <thead></thead>
+            <tbody></tbody>
+        </table>
+
+    </section>
+-->
 
 
 
@@ -208,5 +245,7 @@
 
 
     <script src="js/js.js"></script>
+    <!--<script src="js/js.js" asp-append-version="true"></script>-->
+    <!--<script type="text/javascript">ShowingAllCourses();</script>-->
 </body>
 </html>
