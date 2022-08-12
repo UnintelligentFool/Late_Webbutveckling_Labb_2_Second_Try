@@ -49,7 +49,7 @@
 
         } = true;
 
-        public string UserId {
+        public string? UserId {
 
             get;
 

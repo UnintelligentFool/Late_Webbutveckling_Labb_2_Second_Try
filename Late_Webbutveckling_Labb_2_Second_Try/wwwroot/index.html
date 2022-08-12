@@ -81,8 +81,8 @@
 
 
         <h3>Ta bort kurs</h3>
-        <form method="delete" action="/api/DeleteCourse">
-            <input type="Id" placeholder="Ange kurs id" /><br />
+        <form action="javascript:void(0);" method="post" onsubmit="DeleteCourse(deleteThisId.value)">
+            <input name="deleteThisId" placeholder="Ange kurs id" /><br />
             <button type="submit">Ta bort kurs</button>
         </form>
         <br />
@@ -177,12 +177,93 @@
 
 
         <h3>Lägg till köpt kurs i användarprofil</h3>
-        <form method="" action="/api/">
-            <input type="User" placeholder="Ange användarens id" /><br />
-            <input type="Course" placeholder="Ange kurs id" /><br />
+        <form method="post" action="javascript:void(0);" onsubmit="AddingCourseToUser(addToUser, addThisCourse)">
+            <input name="addToUser" placeholder="Ange användarens id" /><br />
+            <input name="addThisCourse" placeholder="Ange kurs id" /><br />
             <button type="submit">Lägg till kurs i användarprofil</button>
         </form>
         <br />
+
+    </section>
+
+
+
+
+
+
+
+
+
+    <section class="otherColor">
+
+<!--        <h3>Lägg till köpt kurs i användarprofil</h3>
+        <form method="post" action="api/AddCourseToUserProfile/" onsubmit="AddCourseToUserProfile(addThisCourse, addToUser)">
+            <input name="addToUser" type="text" placeholder="Ange användarens id" /><br />
+            <input name="addThisCourse" type="text" placeholder="Ange kurs id" /><br />
+            <button type="submit">Lägg till kurs i användarprofil</button>
+        </form>
+        <br />
+    -->
+
+    <h3>Lägg till köpt kurs i användarprofil</h3>
+        <form method="post" action="javascript:void(0);" onsubmit="AddingCourseToUser(addToUser, addThisCourse)">
+            <input name="addToUser" type="text" placeholder="Ange användarens id" /><br />
+            <input name="addThisCourse" type="text" placeholder="Ange kurs id" /><br />
+            <button type="submit">Lägg till kurs i användarprofil</button>
+        </form>
+        <br />
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <section>
+
+        <h3>Lägga till kurs</h3>
+        <form action="javascript:void(0);" method="post" onsubmit="PleaseAddIt()">
+            <input name="CourseTitle" placeholder="Ange kurs titel" /><br />
+            <input name="CourseDescription" placeholder="Beskriv kursen" /><br />
+            <input name="CourseNumber" placeholder="Ange kursnummer" /><br />
+            <input name="CourseLength" placeholder="Ange kurslängd" /><br />
+            <input name="CourseDifficulty" placeholder="Ange svårighetsgrad på kursen" /><br />
+            <input name="CourseStatus" placeholder="Ange true om aktiv eller false om pensionerad" /><br />
+            <button type="submit">Lägg till kurs</button>
+        </form>
+        <br />
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section class="anotherColor">
+
+        <form action="javascript:void(0);" method="post" onsubmit="AddThisCourse()">
+            <input type="text" name="CourseTitle" placeholder="Ange kurs titel" /><br />
+            <input type="text" name="CourseDescription" placeholder="Beskriv kursen" /><br />
+            <input type="text" name="CourseNumber" placeholder="Ange kursnummer" /><br />
+            <input type="text" name="CourseLength" placeholder="Ange kurslängd" /><br />
+            <input type="text" name="CourseDifficulty" placeholder="Ange svårighetsgrad på kursen" /><br />
+            <input type="text" name="CourseStatus" placeholder="Ange true om aktiv eller false om pensionerad" /><br />
+            <button type="submit">Lägg till kurs</button>
+        </form>
 
     </section>
 
