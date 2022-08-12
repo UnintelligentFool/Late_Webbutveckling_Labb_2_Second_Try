@@ -18,7 +18,7 @@
         }
 
         //Kurstitel
-        public string CourseTitle {
+        public string? CourseTitle {
 
             get;
             set;
@@ -26,7 +26,7 @@
         } = String.Empty;
 
         //Kursbeskrivning
-        public string CourseDescription {
+        public string? CourseDescription {
 
             get;
             set;
@@ -34,7 +34,7 @@
         } = String.Empty;
 
         //Kurslängd
-        public string CourseLength {
+        public string? CourseLength {
 
             get;
             set;
@@ -42,7 +42,7 @@
         } = String.Empty;
 
         //Nivå på kursen(nybörjare, medel, avancerad)
-        public string CourseDifficulty {
+        public string? CourseDifficulty {
 
             get;
             set;

@@ -60,7 +60,7 @@
 
 
         <h3>Lägga till kurs</h3>
-        <form action="javascript:void(0);" method="post" onsubmit="AddACourse()">
+        <form action="javascript:void(0);" method="post" onsubmit="AddACourse(CourseTitle.value, CourseDescription.value, CourseNumber.value, CourseLength.value, CourseDifficulty.value)">
             <input type="text" name="CourseTitle" placeholder="Ange kurs titel" /><br />
             <input type="text" name="CourseDescription" placeholder="Beskriv kursen" /><br />
             <input type="text" name="CourseNumber" placeholder="Ange kursnummer" /><br />
@@ -223,7 +223,7 @@
 
 
 
-
+<!--    Inte korrekt skriven HTML, fungerar ej
     <section>
 
         <h3>Lägga till kurs</h3>
@@ -239,6 +239,7 @@
         <br />
 
     </section>
+-->
 
 
 
@@ -252,21 +253,25 @@
 
 
 
+<!--    https://namespaceit.com/blog/javascript-react-cannot-read-properties-of-null    -->
+<!--    onChange="{(state) => this.setState({isChecked: !state.isChecked})}"    -->
 
+
+<!--    Korrekt skriven HTML nedan, fungerar!
     <section class="anotherColor">
 
-        <form action="javascript:void(0);" method="post" onsubmit="AddThisCourse()">
-            <input type="text" name="CourseTitle" placeholder="Ange kurs titel" /><br />
-            <input type="text" name="CourseDescription" placeholder="Beskriv kursen" /><br />
-            <input type="text" name="CourseNumber" placeholder="Ange kursnummer" /><br />
-            <input type="text" name="CourseLength" placeholder="Ange kurslängd" /><br />
-            <input type="text" name="CourseDifficulty" placeholder="Ange svårighetsgrad på kursen" /><br />
-            <input type="text" name="CourseStatus" placeholder="Ange true om aktiv eller false om pensionerad" /><br />
+        <form action="javascript:void(0);" method="post" onsubmit="AddThisCourse(bCourseTitle.value, bCourseDescription.value, bCourseNumber.value, bCourseLength.value, bCourseDifficulty.value, bCourseStatus.value)">
+            <input type="text" name="bCourseTitle" placeholder="Ange kurs titel" /><br />
+            <input type="text" name="bCourseDescription" placeholder="Beskriv kursen" /><br />
+            <input type="text" name="bCourseNumber" placeholder="Ange kursnummer" /><br />
+            <input type="text" name="bCourseLength" placeholder="Ange kurslängd" /><br />
+            <input type="text" name="bCourseDifficulty" placeholder="Ange svårighetsgrad på kursen" /><br />
+            <input type="text" name="bCourseStatus" placeholder="Ange true om aktiv eller false om pensionerad" /><br />
             <button type="submit">Lägg till kurs</button>
         </form>
 
     </section>
-
+-->
 
 
 

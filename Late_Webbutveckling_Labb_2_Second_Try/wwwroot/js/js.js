@@ -203,65 +203,116 @@ async function ShowingSelectedUser(loadEmail) {
 
 
 
-//  /api/AddCourse
-async function AddACourse() {
 
-    const newCourseTitle = document.getElementById('CourseTitle');
-    const newCourseDescription = document.getElementById('CourseDescription');
-    const newCourseNumber = document.getElementById('CourseNumber');
-    const newCourseLength = document.getElementById('CourseLength');
-    const newCourseDifficulty = document.getElementById('CourseDifficulty');
-    const newCourseStatus = document.getElementById('CourseStatus');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//  /api/AddCourse
+async function AddACourse(CourseTitle, CourseDescription, CourseNumber, CourseLength, CourseDifficulty) {
+
+    console.log("Preparing to add a course...");
 
     const newCourse = {
 
-        CourseTitle: newCourseTitle,
-        CourseDescription: newCourseDescription,
-        CourseNumber: newCourseNumber,
-        CourseLength: newCourseLength,
-        CourseDifficulty: newCourseDifficulty,
-        //CourseStatus: newCourseStatus
+        CourseTitle: CourseTitle,
+        CourseDescription: CourseDescription,
+        CourseNumber: CourseNumber,
+        CourseLength: CourseLength,
+        CourseDifficulty: CourseDifficulty,
         CourseStatus: true,
         UserId: ""
         
     };
-//  /${newCourse}
 
     await fetch(`api/AddCourse`, 
-    {method: 'POST',
-//         body: 'Content-Type': 'application/json' 
-         headers: {
-//            'Accept': 'application/json',
-      'Content-Type': 'application/json'
-             //'Content-Type': 'application/json', 
+    {method: 'POST', headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newCourse)
+    });
 
-//'CourseTitle': 'application/json',
-//        'CourseDescription': 'application/json',
-//        'CourseNumber': 'application/json',
-//        'CourseLength': 'application/json',
-//        'CourseDifficulty': 'application/json',
-//        'CourseStatus': 'application/json'
+    console.log("Course added!");
 
-            }, 
-            body: JSON.stringify(newCourse)
-        })
-//    .then(response => response.json())
-//    .then(() => { newCourseTitle.value = '';
-//newCourse.CourseDescription.value = '';
-//newCourse.CourseNumber.value = '';
-//newCourseLength.value = '';
-//newCourse.CourseDifficulty.value = '';
-//newCourseStatus.value = '';})
-;
 }
 
-//CourseTitle
-//CourseDescription
-//CourseNumber
-//CourseLength
-//CourseDifficulty
-//CourseStatus
-//Id
+
+
+//        //  /api/AddCourse
+//        async function AddACourse() {
+//        
+//            const newCourseTitle = document.getElementById('CourseTitle');
+//            const newCourseDescription = document.getElementById('CourseDescription');
+//            const newCourseNumber = document.getElementById('CourseNumber');
+//            const newCourseLength = document.getElementById('CourseLength');
+//            const newCourseDifficulty = document.getElementById('CourseDifficulty');
+//            const newCourseStatus = document.getElementById('CourseStatus');
+//        
+//            const newCourse = {
+    //        
+//                CourseTitle: newCourseTitle,
+//                CourseDescription: newCourseDescription,
+//                CourseNumber: newCourseNumber,
+//                CourseLength: newCourseLength,
+//                CourseDifficulty: newCourseDifficulty,
+//                //CourseStatus: newCourseStatus
+//                CourseStatus: true,
+//                UserId: ""
+//                
+//            };
+//        //  /${newCourse}
+//        
+//            await fetch(`api/AddCourse`, 
+//            {method: 'POST',
+//        //         body: 'Content-Type': 'application/json' 
+//                 headers: {
+//        //            'Accept': 'application/json',
+//              'Content-Type': 'application/json'
+//                     //'Content-Type': 'application/json', 
+        //        
+//        //'CourseTitle': 'application/json',
+//        //        'CourseDescription': 'application/json',
+//        //        'CourseNumber': 'application/json',
+//        //        'CourseLength': 'application/json',
+//        //        'CourseDifficulty': 'application/json',
+//        //        'CourseStatus': 'application/json'
+        //        
+//                    }, 
+//                    body: JSON.stringify(newCourse)
+//                })
+//        //    .then(response => response.json())
+//        //    .then(() => { newCourseTitle.value = '';
+//        //newCourse.CourseDescription.value = '';
+//        //newCourse.CourseNumber.value = '';
+//        //newCourseLength.value = '';
+//        //newCourse.CourseDifficulty.value = '';
+//        //newCourseStatus.value = '';})
+//        ;
+//        }
+
+
 
 async function AddAUser() {
 
@@ -492,36 +543,61 @@ fetch('api/AddCourse', {
 
 
 
-//  /api/AddCourse
-async function AddThisCourse() {
+//    //  /api/AddCourse
+//    async function AddThisCourse(bCourseTitle, bCourseDescription, bCourseNumber, bCourseLength, bCourseDifficulty, bCourseStatus) {
 
-    const newCourseTitle = document.getElementById('CourseTitle');
-    const newCourseDescription = document.getElementById('CourseDescription');
-    const newCourseNumber = document.getElementById('CourseNumber');
-    const newCourseLength = document.getElementById('CourseLength');
-    const newCourseDifficulty = document.getElementById('CourseDifficulty');
-    const newCourseStatus = document.getElementById('CourseStatus');
 
-    const newCourse = {
 
-        CourseTitle: newCourseTitle,
-        CourseDescription: newCourseDescription,
-        CourseNumber: newCourseNumber,
-        CourseLength: newCourseLength,
-        CourseDifficulty: newCourseDifficulty,
-        //CourseStatus: newCourseStatus
-        CourseStatus: true,
-        UserId: ""
-        
-    };
-
-    await fetch(`api/AddCourse`, 
-    {method: 'POST', headers: {
-        'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newCourse)
-    });
-}
+/////////////////////////////////////////////////////////////////////////////////////////
+//              Det nedan fungerar som POST
+/////////////////////////////////////////////////////////////////////////////////////////
+//    
+//    
+//    
+//        const newCourse = {
+//    
+//            CourseTitle: bCourseTitle,
+//            CourseDescription: bCourseDescription,
+//            CourseNumber: bCourseNumber,
+//            CourseLength: bCourseLength,
+//            CourseDifficulty: bCourseDifficulty,
+//            //CourseStatus: bCourseStatus
+//            CourseStatus: true,
+//            UserId: ""
+//            
+//        };
+//    
+//    
+//    
+//    
+//    //    const newCourseTitle = document.getElementById('bCourseTitle').value;
+//    //    const newCourseDescription = document.getElementById('bCourseDescription').value;
+//    //    const newCourseNumber = document.getElementById('bCourseNumber').value;
+//    //    const newCourseLength = document.getElementById('bCourseLength').value;
+//    //    const newCourseDifficulty = document.getElementById('bCourseDifficulty').value;
+//    //    const newCourseStatus = document.getElementById('bCourseStatus').value;
+//    
+//    //    const newCourse = {
+//    //
+//    //        CourseTitle: newCourseTitle,
+//    //        CourseDescription: newCourseDescription,
+//    //        CourseNumber: newCourseNumber,
+//    //        CourseLength: newCourseLength,
+//    //        CourseDifficulty: newCourseDifficulty,
+//    //        //CourseStatus: newCourseStatus
+//    //        CourseStatus: true,
+//    //        UserId: ""
+//    //        
+//    //    };
+//    
+//        await fetch(`api/AddCourse`, 
+//        {method: 'POST', headers: {
+//    //        'Accept': 'application/json',
+//            'Content-Type': 'application/json'
+//            },
+//            body: JSON.stringify(newCourse)
+//        });
+//    }
 
 
 
