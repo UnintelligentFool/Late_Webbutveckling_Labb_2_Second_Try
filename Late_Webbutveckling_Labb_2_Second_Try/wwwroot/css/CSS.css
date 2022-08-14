@@ -56,8 +56,6 @@ input {
 
 }
 
-
-
 table {
     
     border: 1px solid;
@@ -79,37 +77,3 @@ td {
     padding: 5px;
 
 }
-
-
-
-
-
-
-
-
-section.otherColor {
-
-    background-color: #aa5555;
-
-}
-
-section.anotherColor {
-
-    background-color: #4444ff;
-
-}
-
-
-
-
-
-
-
-
-
-/* testTable {
-
-    color: green;
-    background-color: yellow;
-
-} */

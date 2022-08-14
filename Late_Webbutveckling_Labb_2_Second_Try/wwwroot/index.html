@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <link rel="icon" type="image/x-icon" href="images/favicon.png" />
     <link rel="stylesheet" href="css/CSS.css" />
-    <!--<script src="js/js.js"></script>-->
     <title>Niklas Erikssons Labb 2 API</title>
 </head>
 <body>
@@ -28,13 +27,7 @@
             </tr>
             <tbody id="showAllCourses"></tbody>
         </table><br />
-        <!-- <form action="js/js.js" onsubmit="ShowingAllCourses()"> -->
-        <!-- <form action="js/js.js" method="get" onsubmit="ShowingAllCourses()"> -->
-        <!-- <form action="api/GetAllCourses" method="get" onsubmit="ShowingAllCourses()"> -->
-        <!-- <form action="html/javascript" method="get" onsubmit="ShowingAllCourses()"> -->
-            <!--<button name="GetAllCourses" type="submit" onsubmit="ShowingAllCourses()">Hämta alla kurser</button>-->
             <button name="GetAllCourses" type="submit">Hämta alla kurser</button>
-        <!-- </form> -->
         </form>
         <br />
 
@@ -91,13 +84,9 @@
 
 
     
-
-
-
     <section>
 
         <h2><b><i>Användare</i></b></h2>
-        
 
         <h3>Lista alla användare</h3>
         <form action="javascript:void(0);" method="get" onsubmit="ShowingAllUsers()">
@@ -187,155 +176,7 @@
 
     </section>
 
-
-
-
-
-
-
-
-<!--
-    <section class="otherColor">
--->
-
-<!--        <h3>Lägg till köpt kurs i användarprofil</h3>
-        <form method="post" action="api/AddCourseToUserProfile/" onsubmit="AddCourseToUserProfile(addThisCourse, addToUser)">
-            <input name="addToUser" type="text" placeholder="Ange användarens id" /><br />
-            <input name="addThisCourse" type="text" placeholder="Ange kurs id" /><br />
-            <button type="submit">Lägg till kurs i användarprofil</button>
-        </form>
-        <br />
-    -->
-
-<!--
-        <h3>Lägg till köpt kurs i användarprofil</h3>
-        <form method="post" action="javascript:void(0);" onsubmit="AddingCourseToUser(addToUser, addThisCourse)">
-            <input name="addToUser" type="text" placeholder="Ange användarens id" /><br />
-            <input name="addThisCourse" type="text" placeholder="Ange kurs id" /><br />
-            <button type="submit">Lägg till kurs i användarprofil</button>
-        </form>
-        <br />
-
-    </section>
--->
-
-
-
-
-
-
-
-
-
-<!--    Inte korrekt skriven HTML, fungerar ej
-    <section>
-
-        <h3>Lägga till kurs</h3>
-        <form action="javascript:void(0);" method="post" onsubmit="PleaseAddIt()">
-            <input name="CourseTitle" placeholder="Ange kurs titel" /><br />
-            <input name="CourseDescription" placeholder="Beskriv kursen" /><br />
-            <input name="CourseNumber" placeholder="Ange kursnummer" /><br />
-            <input name="CourseLength" placeholder="Ange kurslängd" /><br />
-            <input name="CourseDifficulty" placeholder="Ange svårighetsgrad på kursen" /><br />
-            <input name="CourseStatus" placeholder="Ange true om aktiv eller false om pensionerad" /><br />
-            <button type="submit">Lägg till kurs</button>
-        </form>
-        <br />
-
-    </section>
--->
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--    https://namespaceit.com/blog/javascript-react-cannot-read-properties-of-null    -->
-<!--    onChange="{(state) => this.setState({isChecked: !state.isChecked})}"    -->
-
-
-<!--    Korrekt skriven HTML nedan, fungerar!
-    <section class="anotherColor">
-
-        <form action="javascript:void(0);" method="post" onsubmit="AddThisCourse(bCourseTitle.value, bCourseDescription.value, bCourseNumber.value, bCourseLength.value, bCourseDifficulty.value, bCourseStatus.value)">
-            <input type="text" name="bCourseTitle" placeholder="Ange kurs titel" /><br />
-            <input type="text" name="bCourseDescription" placeholder="Beskriv kursen" /><br />
-            <input type="text" name="bCourseNumber" placeholder="Ange kursnummer" /><br />
-            <input type="text" name="bCourseLength" placeholder="Ange kurslängd" /><br />
-            <input type="text" name="bCourseDifficulty" placeholder="Ange svårighetsgrad på kursen" /><br />
-            <input type="text" name="bCourseStatus" placeholder="Ange true om aktiv eller false om pensionerad" /><br />
-            <button type="submit">Lägg till kurs</button>
-        </form>
-
-    </section>
--->
-
-
-
-
-
-
-
-
-<!--
-    <section>
-
-        <form method="get" action="index/api/GetACourse">
-
-            <table>
-
-                <tr>
-                    <td></td>
-                </tr>
-
-            </table>
-
-            <button type="submit">Get all courses</button>
-
-        </form>
-
-        <form method="post" action="/api/AddCourse">
-
-        <input type="text" />
-        <button type="submit">Post to AddCourse</button>
-
-        </form>
-
-    </section>
--->
-
-
-
-
-
-
-
-<!--
-    <section>
-
-        <table id="myTestTable" class="testTable">
-            <thead></thead>
-            <tbody></tbody>
-        </table>
-
-    </section>
--->
-
-
-
-
-
-
-
     <script src="js/js.js"></script>
-    <!--<script src="js/js.js" asp-append-version="true"></script>-->
-    <!--<script type="text/javascript">ShowingAllCourses();</script>-->
+
 </body>
 </html>
