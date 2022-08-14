@@ -73,7 +73,7 @@
         [HttpPut("/api/UpdateUserProfile")]
         public async Task<ActionResult<List<User>>> UpdateUserProfile(User user) {
 
-            int originalUserId;
+            //int originalUserId;
             string originalUserFirstName;
             string originalUserLastName;
             string originalUserEmail;
@@ -92,6 +92,7 @@
 
             }
 
+            //originalUserId = _context.users.Find(user.Id).Id;
             originalUserFirstName = _context.users.Find(user.Id).FirstName;
             originalUserLastName = _context.users.Find(user.Id).LastName;
             originalUserEmail = _context.users.Find(user.Id).Email;

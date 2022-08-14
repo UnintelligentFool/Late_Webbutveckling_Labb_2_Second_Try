@@ -74,7 +74,7 @@
 
         <h3>Pensionera kurs</h3>
         <form action="javascript:void(0);" method="post" onsubmit="RetireSelectedCourse(CourseStatus.value)">
-            <input name="CourseStatus" placeholder="Ange kurs id" /><br />
+            <input type="number" name="CourseStatus" placeholder="Ange kurs id" /><br />
             <button type="submit">Pensionera kurs</button>
         </form>
         <br />
@@ -145,39 +145,40 @@
 
 
         <h3>Registrera användarprofil i databasen</h3>
-        <form method="post" action="/api/AddUser">
-            <input type="FirstName" placeholder="First Name" /><br />
-            <input type="LastName" placeholder="Last Name" /><br />
-            <input type="Email" placeholder="Email" /><br />
-            <input type="Phone" placeholder="Phone" /><br />
-            <input type="MailRecipient" placeholder="MailRecipient" /><br />
-            <input type="Street" placeholder="Street" /><br />
-            <input type="ZipCode" placeholder="ZipCode" /><br />
-            <input type="City" placeholder="City" /><br />
-            <input type="Country" placeholder="Country" /><br />
+        <form action="javascript:void(0);" method="post" onsubmit="AddAUser(FirstName.value, LastName.value, Email.value, Phone.value, MailRecipient.value, Street.value, ZipCode.value, City.value, Country.value)">
+            <input type="text" name="FirstName" placeholder="First Name" /><br />
+            <input type="text" name="LastName" placeholder="Last Name" /><br />
+            <input type="text" name="Email" placeholder="Email" /><br />
+            <input type="text" name="Phone" placeholder="Phone" /><br />
+            <input type="text" name="MailRecipient" placeholder="MailRecipient" /><br />
+            <input type="text" name="Street" placeholder="Street" /><br />
+            <input type="text" name="ZipCode" placeholder="ZipCode" /><br />
+            <input type="text" name="City" placeholder="City" /><br />
+            <input type="text" name="Country" placeholder="Country" /><br />
             <button type="submit">Registrera användare</button>
         </form>
         <br />
 
 
         <h3>Uppdatera användarprofil</h3>
-        <form method="" action="/api/">
-            <input type="FirstName" placeholder="First Name" /><br />
-            <input type="LastName" placeholder="Last Name" /><br />
-            <input type="Email" placeholder="Email" /><br />
-            <input type="Phone" placeholder="Phone" /><br />
-            <input type="MailRecipient" placeholder="MailRecipient" /><br />
-            <input type="Street" placeholder="Street" /><br />
-            <input type="ZipCode" placeholder="ZipCode" /><br />
-            <input type="City" placeholder="City" /><br />
-            <input type="Country" placeholder="Country" /><br />
+        <form action="javascript:void(0);" method="post" onsubmit="UpdateAUser(Id.value, FirstName.value, LastName.value, Email.value, Phone.value, MailRecipient.value, Street.value, ZipCode.value, City.value, Country.value)">
+            <input name="Id" placeholder="User Id to update" /><br /><!--  New!  -->
+            <input name="FirstName" placeholder="First Name" /><br />
+            <input name="LastName" placeholder="Last Name" /><br />
+            <input name="Email" placeholder="Email" /><br />
+            <input name="Phone" placeholder="Phone" /><br />
+            <input name="MailRecipient" placeholder="MailRecipient" /><br />
+            <input name="Street" placeholder="Street" /><br />
+            <input name="ZipCode" placeholder="ZipCode" /><br />
+            <input name="City" placeholder="City" /><br />
+            <input name="Country" placeholder="Country" /><br />
             <button type="submit">Uppdatera användare</button>
         </form>
         <br />
 
 
         <h3>Lägg till köpt kurs i användarprofil</h3>
-        <form method="post" action="javascript:void(0);" onsubmit="AddingCourseToUser(addToUser, addThisCourse)">
+        <form method="post" action="javascript:void(0);" onsubmit="AddingCourseToUser(addToUser.value, addThisCourse.value)">
             <input name="addToUser" placeholder="Ange användarens id" /><br />
             <input name="addThisCourse" placeholder="Ange kurs id" /><br />
             <button type="submit">Lägg till kurs i användarprofil</button>
@@ -193,8 +194,9 @@
 
 
 
-
+<!--
     <section class="otherColor">
+-->
 
 <!--        <h3>Lägg till köpt kurs i användarprofil</h3>
         <form method="post" action="api/AddCourseToUserProfile/" onsubmit="AddCourseToUserProfile(addThisCourse, addToUser)">
@@ -205,7 +207,8 @@
         <br />
     -->
 
-    <h3>Lägg till köpt kurs i användarprofil</h3>
+<!--
+        <h3>Lägg till köpt kurs i användarprofil</h3>
         <form method="post" action="javascript:void(0);" onsubmit="AddingCourseToUser(addToUser, addThisCourse)">
             <input name="addToUser" type="text" placeholder="Ange användarens id" /><br />
             <input name="addThisCourse" type="text" placeholder="Ange kurs id" /><br />
@@ -214,6 +217,7 @@
         <br />
 
     </section>
+-->
 
 
 

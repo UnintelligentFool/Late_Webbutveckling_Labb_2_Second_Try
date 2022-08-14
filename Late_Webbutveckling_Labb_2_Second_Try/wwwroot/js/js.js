@@ -314,31 +314,40 @@ async function AddACourse(CourseTitle, CourseDescription, CourseNumber, CourseLe
 
 
 
-async function AddAUser() {
+async function AddAUser(FirstName, LastName, Email, Phone, MailRecipient, Street, ZipCode, City, Country) {
 
-    const newFirstName = document.getElementById('FirstName');
-    const newLastName = document.getElementById('LastName');
-    const newEmail = document.getElementById('Email');
-    const newPhone = document.getElementById('Phone');
-    const newMailRecipient = document.getElementById('MailRecipient');
-    const newStreet = document.getElementById('Street');
-    const newZipCode = document.getElementById('ZipCode');
-    const newCity = document.getElementById('City');
-    const newCountry = document.getElementById('Country');
+//    const newFirstName = document.getElementById('FirstName');
+//    const newLastName = document.getElementById('LastName');
+//    const newEmail = document.getElementById('Email');
+//    const newPhone = document.getElementById('Phone');
+//    const newMailRecipient = document.getElementById('MailRecipient');
+//    const newStreet = document.getElementById('Street');
+//    const newZipCode = document.getElementById('ZipCode');
+//    const newCity = document.getElementById('City');
+//    const newCountry = document.getElementById('Country');
+
+    console.log("Preparing to add a user...");
 
     const newUser = {
 
-        FirstName: newFirstName.value,
-        LastName: newLastName.value,
-        Email: newEmail.value,
-        Phone: newPhone.value,
-        MailRecipient: newMailRecipient.value,
-        Street: newStreet.value,
-        ZipCode: newZipCode.value,
-        City: newCity.value,
-        Country: newCountry.value
+        FirstName: FirstName,
+        LastName: LastName,
+        Email: Email,
+        Phone: Phone,
+        MailRecipient: MailRecipient,
+        Street: Street,
+        ZipCode: ZipCode,
+        City: City,
+        Country: Country
 
-    }
+    };
+
+    await fetch('api/AddUser', 
+    {method: 'POST', 
+    headers: { 'Content-Type': 'application/json' }, 
+    body: JSON.stringify(newUser)});
+
+    console.log("User added!");
     
 }
 
@@ -373,32 +382,385 @@ async function AddAUser() {
 
 
 
-async function RetireSelectedCourse() {//retireId
 
-    const statusOfCourse = document.getElementById('CourseStatus'.value);
 
+
+
+
+
+
+
+async function UpdateAUser(Id, FirstName, LastName, Email, Phone, MailRecipient, Street, ZipCode, City, Country) {
+
+        console.log("Preparing to update a user...");
+    
+        const updateUser = {
+    
+            Id: Id,
+            FirstName: FirstName,
+            LastName: LastName,
+            Email: Email,
+            Phone: Phone,
+            MailRecipient: MailRecipient,
+            Street: Street,
+            ZipCode: ZipCode,
+            City: City,
+            Country: Country
+    
+        };
+    
+        await fetch('api/UpdateUserProfile', 
+        {method: 'PUT', 
+        headers: { 'Content-Type': 'application/json' }, 
+        body: JSON.stringify(updateUser)});
+    
+        console.log("User updated!");
+        
+    }
+    
+    //Id
+    //FirstName
+    //LastName
+    //Email
+    //Phone
+    //MailRecipient
+    //Street
+    //ZipCode
+    //City
+    //Country
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//async function RetireSelectedCourse(retireId) {//retireId
+//
+//    const statusOfCourse = retireId;
+//
 //    const newStatusOfCourse = {
 //
 //        id: parseInt(statusOfCourse, 10),
-//        courseStatus: document.getElementById('CourseStatus').value
 //
 //    }
+//
+//    console.log("Retiring course");
+//
+//    await fetch(`api/RetireCourse/${retireId}`, {
+//    //await fetch(`api/RetireCourse/${statusOfCourse}`, {
+//
+//        method: 'PUT',
+//        headers: {
+//
+//            //'Accept': 'application/json',
+//            'Content-Type': 'application/json'
+//
+//        },
+//        body: JSON.stringify()
+//
+//    });
+//
+//    console.log("Course retired.");
+//
+//}
 
-    //fetch(`api/RetireCourse/${retireId}`), {
-    await fetch(`api/RetireCourse/${statusOfCourse}`, {
 
-        method: 'PUT',
-        headers: {
 
-            'Accept': 'application/json',
-            //'Content-Type': 'application/json'
 
-        },
-        body: JSON.stringify()
 
-    });
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    async function RetireSelectedCourse(retireId) {//retireId
+//    
+//        console.log(retireId);
+//    
+//        const statusOfCourse = {
+    //    
+//            //id: parseInt(retireId, 10)
+//            id: retireId,
+//            CourseStatus: false
+    //    
+//        };
+//    
+//    //    const newStatusOfCourse = {
+//    //
+//    //        id: parseInt(retireId, retireId)
+//    //        courseStatus: document.getElementById('CourseStatus').value
+//    //
+//    //    }
+//    
+//    
+//    
+//        console.log("Retiring course");
+//    
+//        await fetch(`api/RetireCourse/${retireId}`, {
+//        //await fetch(`api/RetireCourse/${statusOfCourse}`, {
+    //    
+//            method: 'PUT',
+//            headers: {
+//      //    
+//                //'Accept': 'application/json',
+//                'Content-Type': 'application/json'
+//      //    
+//            },
+//            body: JSON.stringify(statusOfCourse)
+    //    
+//        });
+//    
+//        console.log("Course retired.");
+//    
+//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    async function RetireSelectedCourse(retireId) {//retireId
+//    
+//        console.log(retireId);
+//    
+//        //const statusOfCourse = document.getElementById('CourseStatus'.value);
+//    
+//        const newStatusOfCourse = {
+//    //
+//            id: parseInt(retireId, retireId)
+//    //        courseStatus: document.getElementById('CourseStatus').value
+//    //
+//        }
+//    
+//        console.log("Retiring course");
+//    
+//        await fetch(`api/RetireCourse/${newStatusOfCourse}`, {
+//        //await fetch(`api/RetireCourse/${statusOfCourse}`, {
+    //    
+//            method: 'PUT',
+//            headers: {
+//      //    
+//                //'Accept': 'application/json',
+//                'Content-Type': 'application/json'
+//      //    
+//            },
+//            body: JSON.stringify()
+    //    
+//        });
+//    
+//        console.log("Course retired.");
+//    
+//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    async function RetireSelectedCourse(retireId) {//retireId
+//    
+//        //const statusOfCourse = document.getElementById('CourseStatus'.value);
+//    
+//    //    const newStatusOfCourse = {
+//    //
+//    //        id: parseInt(statusOfCourse, 10),
+//    //        courseStatus: document.getElementById('CourseStatus').value
+//    //
+//    //    }
+//    
+//        console.log("Retiring course");
+//    
+//        await fetch(`api/RetireCourse/${retireId}`, {
+//        //await fetch(`api/RetireCourse/${statusOfCourse}`, {
+    //    
+//            method: 'PUT',
+//            headers: {
+        //    
+//                //'Accept': 'application/json',
+//                'Content-Type': 'application/json'
+        //    
+//            },
+//            body: JSON.stringify()
+    //    
+//        });
+//    
+//        console.log("Course retired.");
+//    
+//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//        async function RetireSelectedCourse(retireId) {//retireId
+//        
+//          console.log("Preparing to retire course...");
+//      
+//            const statusOfCourse = retireId;
+//        
+//            const newStatusOfCourse = {
+//        
+//                Id: retireId,
+//                CourseStatus: false,
+//      
+//                CourseTitle: "",
+//              CourseDescription: "",
+//              CourseNumber: "",
+//              CourseLength: "",
+//              CourseDifficulty: "",
+//              
+//              UserId: ""
+//        
+//            }
+//        
+//            console.log("Retiring course");
+//        
+//            await fetch(`api/RetireCourse/${newStatusOfCourse}`, {
+//            //await fetch(`api/RetireCourse/${statusOfCourse}`, {
+//      //    
+//                method: 'PUT',
+//                headers: {
+//          //    
+//                    //'Accept': 'application/json',
+//                    'Content-Type': 'application/json'
+//          //    
+//                },
+//                body: JSON.stringify(newStatusOfCourse)
+//      //    
+//            });
+//        
+//            console.log("Course retired.");
+//        
+//        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+async function RetireSelectedCourse(retireId) {//retireId
+  
+    console.log("Retiring course");
+
+      const newStatusOfCourse = {
+  
+        Id: retireId//,
+        //CourseStatus: false,
+
+        //CourseTitle: "",
+        //CourseDescription: "",
+        //CourseNumber: "",
+        //CourseLength: "",
+        //CourseDifficulty: "",
+        
+        //UserId: ""
+  
+      };
+  
+      await fetch(`api/RetireCourse`, 
+      {method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newStatusOfCourse)});
+  
+      console.log("Course retired.");
+  
+  }
+
+
+
+
 
 
 
@@ -432,13 +794,89 @@ async function DeleteCourse(deleteId) {
 
 
 
-//    api/AddCourseToUserProfile/{user}/{course}
+//      //    api/AddCourseToUserProfile/{user}/{course}
+//      
+//      //     + `/` + {toThisUser} + `/` + {addThisCourse}
+//      
+//      async function AddingCourseToUser(toThisUser, addThisCourse) {
+//      
+//          console.log("Preparing to add course to user");
+//      
+//          const thisUser = {
+//      
+//              Id: toThisUser
+//      
+//          }
+//      
+//          const thisCourse = {
+//      
+//              Id: addThisCourse
+//      
+//          }
+//      
+//          await fetch(`api/AddCourseToUserProfile/${toThisUser}/${addThisCourse}`, 
+//          { method: 'PUT',
+//          headers: { 'Content-Type': 'application/json' },
+//          body: JSON.stringify(thisUser, thisCourse)});
+//      
+//          console.log("Course assigned.");
+//      
+//      }
 
-//     + `/` + {toThisUser} + `/` + {addThisCourse}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 async function AddingCourseToUser(toThisUser, addThisCourse) {
 
-    await fetch(`api/AddCourseToUserProfile`, { method: 'PUT' });
+    console.log("Preparing to add course to user");
+
+//    const thisUser = {
+//
+//        Id: toThisUser
+//
+//    }
+
+    const thisCourse = {
+
+        Id: addThisCourse,
+        UserId: toThisUser
+
+    }
+
+    await fetch(`api/AddCourseToUserProfile/${toThisUser}/${addThisCourse}`, 
+    { method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(thisCourse)});
+
+    console.log("Course assigned.");
 
 }
 
@@ -475,45 +913,45 @@ async function AddingCourseToUser(toThisUser, addThisCourse) {
 
 
 
-async function PleaseAddIt() {
-
-    //const data = { courseName: 'example' };
-
-    const newCourseTitle = document.getElementById('CourseTitle');
-    const newCourseDescription = document.getElementById('CourseDescription');
-    const newCourseNumber = document.getElementById('CourseNumber');
-    const newCourseLength = document.getElementById('CourseLength');
-    const newCourseDifficulty = document.getElementById('CourseDifficulty');
-    const newCourseStatus = document.getElementById('CourseStatus');
-
-    const newCourse = {
-
-        CourseTitle: document.getElementById('CourseTitle'),
-        CourseDescription: newCourseDescription,
-        CourseNumber: newCourseNumber,
-        CourseLength: newCourseLength,
-        CourseDifficulty: newCourseDifficulty,
-        //CourseStatus: newCourseStatus
-        CourseStatus: true
-        
-    };
-
-fetch('api/AddCourse', {
-  method: 'POST', // or 'PUT'
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(newCourse),
-})
-.then((response) => response.json())
-//.then((newCourse) => {
-//  console.log('Success:', newCourse);
-//})
-//.catch((error) => {
-//  console.error('Error:', error);
-//});
-;
-}
+//    async function PleaseAddIt() {
+//    
+//        //const data = { courseName: 'example' };
+//    
+//        const newCourseTitle = document.getElementById('CourseTitle');
+//        const newCourseDescription = document.getElementById('CourseDescription');
+//        const newCourseNumber = document.getElementById('CourseNumber');
+//        const newCourseLength = document.getElementById('CourseLength');
+//        const newCourseDifficulty = document.getElementById('CourseDifficulty');
+//        const newCourseStatus = document.getElementById('CourseStatus');
+//    
+//        const newCourse = {
+    //    
+//            CourseTitle: document.getElementById('CourseTitle'),
+//            CourseDescription: newCourseDescription,
+//            CourseNumber: newCourseNumber,
+//            CourseLength: newCourseLength,
+//            CourseDifficulty: newCourseDifficulty,
+//            //CourseStatus: newCourseStatus
+//            CourseStatus: true
+//            
+//        };
+//    
+//    fetch('api/AddCourse', {
+//      method: 'POST', // or 'PUT'
+//      headers: {
+//        'Content-Type': 'application/json',
+//      },
+//      body: JSON.stringify(newCourse),
+//    })
+//    .then((response) => response.json())
+//    //.then((newCourse) => {
+//    //  console.log('Success:', newCourse);
+//    //})
+//    //.catch((error) => {
+//    //  console.error('Error:', error);
+//    //});
+//    ;
+//    }
 
 
 
