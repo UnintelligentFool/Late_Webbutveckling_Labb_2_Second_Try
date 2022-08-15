@@ -83,6 +83,47 @@ async function ShowingSelectedCourse(loadId) {
 
 
 
+async function ShowingSelectedCourseByCourseNumber(loadId) {
+
+    const selectedCourse = await fetch(`api/GetCourseByCourseNumber/${loadId}`, { method: 'GET' })
+    .then(gettingCourse => gettingCourse.json());
+
+    const tableBody = document.getElementById('showSelectedCourseByCoursenumber');
+    tableBody.innerHTML = '';
+
+    console.log("Loading course");
+
+    let newTableRow = tableBody.insertRow();
+
+    let tableDataOne = newTableRow.insertCell(0);
+    tableDataOne.appendChild(document.createTextNode(selectedCourse.id));
+
+    let tableDataTwo = newTableRow.insertCell(1);
+    tableDataTwo.appendChild(document.createTextNode(selectedCourse.courseTitle));
+
+    let tableDataThree = newTableRow.insertCell(2);
+    tableDataThree.appendChild(document.createTextNode(selectedCourse.courseDescription));
+
+    let tableDataFour = newTableRow.insertCell(3);
+    tableDataFour.appendChild(document.createTextNode(selectedCourse.courseNumber));
+
+    let tableDataFive = newTableRow.insertCell(4);
+    tableDataFive.appendChild(document.createTextNode(selectedCourse.courseLength));
+
+    let tableDataSix = newTableRow.insertCell(5);
+    tableDataSix.appendChild(document.createTextNode(selectedCourse.courseDifficulty));
+
+    let tableDataSeven = newTableRow.insertCell(6);
+    tableDataSeven.appendChild(document.createTextNode(selectedCourse.courseStatus));
+
+    showSelectedCourse = selectedCourse;
+
+    console.log("Course loaded");
+
+}
+
+
+
 async function ShowingAllUsers() {
 
     const allUsers = await fetch('api/GetAllUsers').then(gettingUsers => gettingUsers.json());
@@ -320,5 +361,93 @@ async function AddingCourseToUser(toThisUser, addThisCourse) {
     body: JSON.stringify(thisCourse)});
 
     console.log("Course assigned.");
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+async function ShowingUsersCourses(loadThisUsersCourses) {
+
+    const allUsersCourses = await fetch(`api/GetCoursesForUser/${loadThisUsersCourses}`, { method: 'GET' })
+    .then(gettingUsersCourses => gettingUsersCourses.json());
+    
+    const tableBody = document.getElementById('showUsersCourses');
+    tableBody.innerHTML = '';
+
+    console.log("Starting to load courses list");
+
+    Array.from(allUsersCourses).forEach(course => {
+        
+        let newTableRow = tableBody.insertRow();
+
+        let tableDataOne = newTableRow.insertCell(0);
+        tableDataOne.appendChild(document.createTextNode(course.id));
+
+        let tableDataTwo = newTableRow.insertCell(1);
+        tableDataTwo.appendChild(document.createTextNode(course.courseTitle));
+
+        let tableDataThree = newTableRow.insertCell(2);
+        tableDataThree.appendChild(document.createTextNode(course.courseDescription));
+
+        let tableDataFour = newTableRow.insertCell(3);
+        tableDataFour.appendChild(document.createTextNode(course.courseNumber));
+
+        let tableDataFive = newTableRow.insertCell(4);
+        tableDataFive.appendChild(document.createTextNode(course.courseLength));
+
+        let tableDataSix = newTableRow.insertCell(5);
+        tableDataSix.appendChild(document.createTextNode(course.courseDifficulty));
+
+        let tableDataSeven = newTableRow.insertCell(6);
+        tableDataSeven.appendChild(document.createTextNode(course.courseStatus));
+
+    });
+
+    showUsersCourses = allUsersCourses;
+
+    console.log("Finished loading list");
 
 }

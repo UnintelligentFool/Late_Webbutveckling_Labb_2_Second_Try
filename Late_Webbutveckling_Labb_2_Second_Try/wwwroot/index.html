@@ -52,14 +52,42 @@
         <br />
 
 
+        <h3>Hämta kursen med specifikt kursnummer</h3>
+        <form action="javascript:void(0);" method="get" onsubmit="ShowingSelectedCourseByCourseNumber(loadCourseByCourseNumber.value)">
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>CourseTitle</th>
+                <th>CourseDescription</th>
+                <th>CourseNumber</th>
+                <th>CourseLength</th>
+                <th>CourseDifficulty</th>
+                <th>CourseStatus</th>
+            </tr>
+            <tbody id="showSelectedCourseByCoursenumber"></tbody>
+        </table><br />
+        <input name="loadCourseByCourseNumber" placeholder="Ange kursnummer" /><br />
+        <button type="submit">Hämta vald kurs</button>
+        </form>
+        <br />
+
+
         <h3>Lägga till kurs</h3>
         <form action="javascript:void(0);" method="post" onsubmit="AddACourse(CourseTitle.value, CourseDescription.value, CourseNumber.value, CourseLength.value, CourseDifficulty.value)">
             <input type="text" name="CourseTitle" placeholder="Ange kurs titel" /><br />
             <input type="text" name="CourseDescription" placeholder="Beskriv kursen" /><br />
             <input type="text" name="CourseNumber" placeholder="Ange kursnummer" /><br />
             <input type="text" name="CourseLength" placeholder="Ange kurslängd" /><br />
-            <input type="text" name="CourseDifficulty" placeholder="Ange svårighetsgrad på kursen" /><br />
+            <!--
+                <input type="text" name="CourseDifficulty" placeholder="Ange svårighetsgrad på kursen" /><br />
+            -->
+            <p>Ange svårighetsgrad på kursen:</p>
+            <input type="radio" name="CourseDifficulty" id="Beginner" value="Beginner" /><label for="Beginner">Beginner</label><br />
+            <input type="radio" name="CourseDifficulty" id="Medium" value="Medium" /><label for="Medium">Medium</label><br />
+            <input type="radio" name="CourseDifficulty" id="Advanced" value="Advanced" /><label for="Advanced">Advanced</label><br />
+            <!--
             <input type="text" name="CourseStatus" placeholder="Ange true om aktiv eller false om pensionerad" /><br />
+            -->
             <button type="submit">Lägg till kurs</button>
         </form>
         <br />
@@ -175,6 +203,90 @@
         <br />
 
     </section>
+
+
+
+    <section>
+
+        <!--
+
+        <h3>Lägga till kurs</h3>
+        <form action="javascript:void(0);" method="post" onsubmit="AddACourse(CourseTitle.value, CourseDescription.value, CourseNumber.value, CourseLength.value, CourseDifficulty.value)">
+            <input type="text" name="CourseTitle" placeholder="Ange kurs titel" /><br />
+            <input type="text" name="CourseDescription" placeholder="Beskriv kursen" /><br />
+            <input type="text" name="CourseNumber" placeholder="Ange kursnummer" /><br />
+            <input type="text" name="CourseLength" placeholder="Ange kurslängd" /><br />
+            <input type="text" name="CourseDifficulty" placeholder="Ange svårighetsgrad på kursen" /><br />
+            <input type="text" name="CourseStatus" placeholder="Ange true om aktiv eller false om pensionerad" /><br />
+            <button type="submit">Lägg till kurs</button>
+        </form>
+        <br />
+
+        -->
+
+        <!-- Grouped: Name ---- Action: Radio -->
+
+        <!--
+        <h3>Lägga till kurs</h3>
+        <form action="javascript:void(0);" method="post" onsubmit="AddACourse(CourseTitle.value, CourseDescription.value, CourseNumber.value, CourseLength.value, CourseDifficulty.value)">
+            <input type="text" name="CourseTitle" placeholder="Ange kurs titel" /><br />
+            <input type="text" name="CourseDescription" placeholder="Beskriv kursen" /><br />
+            <input type="text" name="CourseNumber" placeholder="Ange kursnummer" /><br />
+            <input type="text" name="CourseLength" placeholder="Ange kurslängd" /><br />
+            <input type="text" name="CourseDifficulty" placeholder="Ange svårighetsgrad på kursen" /><br />
+            <input type="radio" name="CourseStatus" id="aktiv"/><label for="aktiv">Ange som Aktiv:</label><br />
+            <input type="radio" name="CourseStatus" id="pensionerad"/><label for="pensionerad">Ange som Pensionerad:</label><br />
+            <button type="submit">Lägg till kurs</button>
+        </form>
+        <br />
+        -->
+
+        
+<!--        <h3>Lägga till kurs</h3>
+        <form action="javascript:void(0);" method="post" onsubmit="AddACourse(CourseTitle.value, CourseDescription.value, CourseNumber.value, CourseLength.value, CourseDifficulty.value)">
+            <input type="text" name="CourseTitle" placeholder="Ange kurs titel" /><br />
+            <input type="text" name="CourseDescription" placeholder="Beskriv kursen" /><br />
+            <input type="text" name="CourseNumber" placeholder="Ange kursnummer" /><br />
+            <input type="text" name="CourseLength" placeholder="Ange kurslängd" /><br />
+-->            <!-- <input type="text" name="CourseDifficulty" placeholder="Ange svårighetsgrad på kursen" /><br /> -->
+<!--            <p>Ange svårighetsgrad på kursen:</p>
+            <input type="radio" name="CourseDifficulty" id="Beginner" value="Beginner" /><label for="Beginner">Beginner</label><br />
+            <input type="radio" name="CourseDifficulty" id="Medium" value="Medium" /><label for="Medium">Medium</label><br />
+            <input type="radio" name="CourseDifficulty" id="Advanced" value="Advanced" /><label for="Advanced">Advanced</label><br />
+-->            <!--
+            <input type="text" name="CourseStatus" placeholder="Ange true om aktiv eller false om pensionerad" /><br />
+            -->
+<!--            <button type="submit">Lägg till kurs</button>
+        </form>
+        <br />
+-->
+
+
+
+<h3>Hämta kurser för användare</h3>
+        <form action="javascript:void(0);" method="get" onsubmit="ShowingUsersCourses(loadUsersCourses.value)">
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>CourseTitle</th>
+                <th>CourseDescription</th>
+                <th>CourseNumber</th>
+                <th>CourseLength</th>
+                <th>CourseDifficulty</th>
+                <th>CourseStatus</th>
+            </tr>
+            <tbody id="showUsersCourses"></tbody>
+        </table><br />
+        <input name="loadUsersCourses" placeholder="Ange användar id" /><br />
+        <button type="submit">Hämta vald användares kurser</button>
+        </form>
+        <br />
+
+
+
+    </section>
+
+
 
     <script src="js/js.js"></script>
 

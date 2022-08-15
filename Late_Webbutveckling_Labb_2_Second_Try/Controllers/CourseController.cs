@@ -14,7 +14,7 @@ namespace Late_Webbutveckling_Labb_2_Second_Try.Controllers {
 
         }
 
-        [HttpGet("/api/GetCoursesForUser")]
+        [HttpGet("/api/GetCoursesForUser/{userId}")]
         public async Task<ActionResult<List<Course>>> Get(string userId) {
 
             var courses = await _context.courses
@@ -65,6 +65,21 @@ namespace Late_Webbutveckling_Labb_2_Second_Try.Controllers {
                 return BadRequest("Kunde inte hämta kurs");
 
             }
+
+            return Ok(courseToReturn);
+
+        }
+
+        [HttpGet("/api/GetCourseByCourseNumber/{CourseNumber}")]
+        public async Task<ActionResult<Course>> GetCourseByCourseNumber(int courseNumber) {
+
+            var courseToReturn = _context.courses.FirstOrDefaultAsync(findCourse => findCourse.CourseNumber == courseNumber).Result;
+
+/*            if (courseToReturn is null) {
+
+                return BadRequest("Kunde inte hämta kurs");
+
+            }*/
 
             return Ok(courseToReturn);
 
@@ -121,8 +136,8 @@ namespace Late_Webbutveckling_Labb_2_Second_Try.Controllers {
 
 
 
-
-        [HttpGet("/api/GetACourse")]
+        //DENNA KAN TAS BORT OM JAG INTE TAR MISTE
+/*        [HttpGet("/api/GetACourse")]
         public async Task<ActionResult<List<Course>>> GetACourse() {
 
             //string? clown = _context.courses.FirstOrDefault().ToString();
@@ -132,7 +147,7 @@ namespace Late_Webbutveckling_Labb_2_Second_Try.Controllers {
             return Ok(await _context.users.FirstAsync());
 
         }
-
+*/
 
 
 

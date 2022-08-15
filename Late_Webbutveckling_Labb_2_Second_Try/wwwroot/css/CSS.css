@@ -56,6 +56,13 @@ input {
 
 }
 
+label {
+
+    margin: -25rem;
+    color: yellow;
+
+}
+
 table {
     
     border: 1px solid;
