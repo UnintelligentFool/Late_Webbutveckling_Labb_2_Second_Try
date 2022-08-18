@@ -19,4 +19,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include=".bak\Labb_2_Late_Webbutveckling.bak" />
+  </ItemGroup>
+
 </Project>
