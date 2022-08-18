@@ -14,7 +14,7 @@
         protected string originalUserCity;
         protected string originalUserCountry;
 
-        //New Code // A disturbance in the force
+        // New Code // A disturbance in the force
 
         //List<Course> courseList = new List<Course> {
 
